@@ -6,16 +6,16 @@
 /***********************************************************************
 全局变量的bit分配
 ------------------------------------------------------------------------
-Name								bit					Defination
+Name		bit					Defination
 ------------------------------------------------------------------------
-Task_Flag	  						7					BAT_FULVOL
-									6					BAT_HIGVOL
-									5					BAT_MIDVOL
-									4					BAT_LOWVOL
-									3					M4_OVERCUR
-									2					M3_OVERCUR
-									1					M2_OVERCUR
-									0					M1_OVERCUR
+Task_Flag	7					BAT_FULVOL
+		6					BAT_HIGVOL
+		5					BAT_MIDVOL
+		4					BAT_LOWVOL
+		3					M4_OVERCUR
+		2					M3_OVERCUR
+		1					M2_OVERCUR
+		0					M1_OVERCUR
 ------------------------------------------------------------------------
 ************************************************************************/
 ADC_FLAG ADCMont_Flg;
@@ -341,8 +341,8 @@ static void Vol_Montr(void)
 	}
 	
 	if(((Bat_LowVol <= ADC_Conversion_Value[4]) && 
-		(ADC_Conversion_Value[4] < Bat_MidVol)) || 
-		(ADC_Conversion_Value[4] < Bat_LowVol))
+	(ADC_Conversion_Value[4] < Bat_MidVol)) || 
+	(ADC_Conversion_Value[4] < Bat_LowVol))
 	{
 		*pADCFlg = (*pADCFlg) & 0x0f;
 		ADCMont_Flg.BAT_LOWVOL = 0x01;
