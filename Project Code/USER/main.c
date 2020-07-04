@@ -12,26 +12,22 @@
 
 /************************************************************************
 *Development Log:
-*¢Ùfinished the init of Model & System
-*¢Úfinished the interface of Call Back Funcation
-*¢Ûfinished the package of Call Back Funcation
-*¢Üfix the bug:the address of reading over-current state of motor 
-*¢Üfix the bug:STOP_KEY control state isn't considered in Motor control
+*â‘ finished the init of Model & System
+*â‘¡finished the interface of Call Back Funcation
+*â‘¢finished the package of Call Back Funcation
+*â‘£fix the bug:the address of reading over-current state of motor 
+*â‘£fix the bug:STOP_KEY control state isn't considered in Motor control
 ************************************************************************/
 
-//²âÊÔ
-extern u16 ADC_Conversion_Value[5];
-
 /********************************************************************
-³ÌĞò¹¦ÄÜ£ºÏµÍ³µÄ³õÊ¼»¯
-³ÌĞò°æ±¾£ºV1.0
-ÈÕ    ÆÚ£º 2019/5/30
-×÷    Õß£ºOrange
-ĞŞ    ¸Ä£ºÎŞ
+ç¨‹åºåŠŸèƒ½ï¼šç³»ç»Ÿçš„åˆå§‹åŒ–
+ç¨‹åºç‰ˆæœ¬ï¼šV1.0
+æ—¥    æœŸï¼š 2019/5/30
+ä½œ    è€…ï¼šOrange
+ä¿®    æ”¹ï¼šæ— 
 ********************************************************************/
 void System_Init(void)
 {
-	//¸÷¸öÄ£¿éµÄ³õÊ¼»¯
 	MLED_Init();
 	MKEY_Init();
 	MUSART_Init();
@@ -44,11 +40,11 @@ void System_Init(void)
 }
 
 /********************************************************************
-³ÌĞò¹¦ÄÜ£º»Øµ÷º¯ÊıµÄ´¦Àí
-³ÌĞò°æ±¾£ºV1.0
-ÈÕ    ÆÚ£º 2019/5/30
-×÷    Õß£ºOrange
-ĞŞ    ¸Ä£ºÎŞ
+ç¨‹åºåŠŸèƒ½ï¼šå›è°ƒå‡½æ•°çš„å¤„ç†
+ç¨‹åºç‰ˆæœ¬ï¼šV1.0
+æ—¥    æœŸï¼š 2019/5/30
+ä½œ    è€…ï¼šOrange
+ä¿®    æ”¹ï¼šæ— 
 ********************************************************************/
 
 void Handle_Func(void (*CallBack_Func)(void), u8 *Timer_Flg)
@@ -72,11 +68,11 @@ void Handle_Func(void (*CallBack_Func)(void), u8 *Timer_Flg)
 } 
 
 /********************************************************************
-³ÌĞò¹¦ÄÜ£ºDemoÖ÷³ÌĞò
-³ÌĞò°æ±¾£ºV1.0
-ÈÕ    ÆÚ£º 2019/5/30
-×÷    Õß£ºOrange
-ĞŞ    ¸Ä£ºÎŞ
+ç¨‹åºåŠŸèƒ½ï¼šDemoä¸»ç¨‹åº
+ç¨‹åºç‰ˆæœ¬ï¼šV1.0
+æ—¥    æœŸï¼š 2019/5/30
+ä½œ    è€…ï¼šOrange
+ä¿®    æ”¹ï¼šæ— 
 ********************************************************************/
 
 int main(void)
@@ -86,7 +82,7 @@ int main(void)
   	while(1)
 	{
 		/**************************************************
-						Ê±¼äÆ¬ÂÖÑ¯µ÷¶È
+				æ—¶é—´ç‰‡è½®è¯¢è°ƒåº¦
 		***************************************************/
 		
 		/************10ms task-433M control************/
@@ -114,7 +110,7 @@ int main(void)
 		
 		/*****************task-WDG******************/
 		Handle_Func(MWDG_CallBack, (u8*)&WDG_Flg); 
-		WDG_Flg = 1;  //ÖØĞÂÖÃÎ»
+		WDG_Flg = 1;  //é‡æ–°ç½®ä½
 	}
 	
 	//return 0;
