@@ -2,33 +2,33 @@
 #include "delay.h"
 #include "Public_Value.h"
 
-/*************************************************************************************************
-LEDӲ�����������
-Serial_Num    Name   						GPIO    INIT     Function
-------------------------------------------------------------------------------------------------
-    1         KEY_Sts_LED       			PA5     0(OFF)   ��ʾֹͣ������״̬������Ϊ1(ON)���̰�Ϊ0(OFF)
-	2         MCU_Sts_LED       			PB5		1(ON)    ��Ƭ���ϵ�������������ϵ�Ϊ1(ON),�µ�Ϊ0(OFF)
-	3		  Data_Sts_LED      			PB6     1(����)	 433M�ȴ�����ʱ������״̬�����ӳɹ�ʱ����״̬
-	4		  Return_Sts_LED    			PB7     0(OFF)   ����ʱ����ʼ��������ʼ��ʱϨ��״̬
-	5		  Front_Light_LED   			PB8     1(ON)	 ��Ƭ���ϵ������󣬿�ʼ����
-	6         KEY_To_LED1					PC11	0(OFF)	 ��ʼ��ʱ��Ϩ�𣬵����յ�ң�����İ��������ź�ʱ����
-	7		  KEY_To_LED2					PC12	0(OFF)	 ��ʼ��ʱ��Ϩ�𣬵����յ�ң�����İ��������ź�ʱ����
--------------------------------------------------------------------------------------------------
-*************************************************************************************************/
+/***************************************************************************************************************
+LED硬件层的索引：
+Serial_Num    		Name   			GPIO    INIT     Function
+--------------------------------------------------------------------------------------------------------------
+    1         		KEY_Sts_LED       	PA5     0(OFF)   显示停止按键的状态，长按为1(ON)，短按为0(OFF)
+    2         		MCU_Sts_LED       	PB5	1(ON)    单片机上电正常后点亮，上电为1(ON),下电为0(OFF)
+    3		  	Data_Sts_LED      	PB6     1(快闪)	 433M等待连接时，快闪状态，连接成功时常亮状态
+    4		  	Return_Sts_LED    	PB7     0(OFF)   返航时，开始慢闪，初始化时熄灭状态
+    5			Front_Light_LED   	PB8     1(ON)	 单片机上电正常后，开始点亮
+    6         		KEY_To_LED1		PC11	0(OFF)	 初始化时，熄灭，当接收到遥控器的按键按下信号时点亮
+    7		  	KEY_To_LED2		PC12	0(OFF)	 初始化时，熄灭，当接收到遥控器的按键按下信号时点亮
+--------------------------------------------------------------------------------------------------------------
+***************************************************************************************************************/
 
 /***********************************************************************
-ȫ�ֱ�����bit����
+全局变量的bit分配
 ------------------------------------------------------------------------
-Name									bit					Defination
+Name		  bit					Defination
 ------------------------------------------------------------------------
-RLED_State	  							7					reserved
-										6					reserved
-										5					reserved
-										4					KEY_LED2
-										3					KEY_LED1
-										2					FrontLight_LED
-										1					ReturnSts_LED
-										0					DataSts_LED
+RLED_State	  7					reserved
+		  6					reserved
+		  5					reserved
+		  4					KEY_LED2
+		  3					KEY_LED1
+		  2					FrontLight_LED
+		  1					ReturnSts_LED
+		  0					DataSts_LED
 ------------------------------------------------------------------------
 ************************************************************************/
 //u8 RLED_State = 0;
@@ -52,11 +52,11 @@ struct ReadLed_State
 //u8 *pRSts = (u8*)&ReadLed_Sts;
 
 /*************************************************************************
-�����ܣ�LEDģ��ص�������20ms task
-����汾��V1.0
-��    �ڣ� 2019/5/31
-��    �ߣ�Orange
-��    �ģ���
+程序功能：LED模块回调函数，20ms task
+程序版本：V1.0
+日    期： 2019/5/31
+作    者：Orange
+修    改：无
 *************************************************************************/
 
 void MLED_CallBack(void)
@@ -79,11 +79,11 @@ void MLED_CallBack(void)
 }
 
 /*************************************************************************
-�����ܣ�LEDģ��ĳ�ʼ��
-����汾��V1.0
-��    �ڣ� 2019/5/31
-��    �ߣ�Orange
-��    �ģ���
+程序功能：LED模块的初始化
+程序版本：V1.0
+日    期： 2019/5/31
+作    者：Orange
+修    改：无
 *************************************************************************/
 
 void MLED_Init(void)
@@ -97,16 +97,16 @@ void MLED_Init(void)
 }
 
 /*************************************************************************
-�����ܣ�ȫ�ֱ���RLED_State�ĳ�ʼ��
-����汾��V1.0
-��    �ڣ� 2019/5/31
-��    �ߣ�Orange
-��    �ģ���
+程序功能：全局变量RLED_State的初始化
+程序版本：V1.0
+日    期： 2019/5/31
+作    者：Orange
+修    改：无
 *************************************************************************/
 
 static void RLEDSts_Init(void)
 {
-	ReadLed_Sts.DSts_LED = 0x01;   //ʵ��ֵ0x01 
+	ReadLed_Sts.DSts_LED = 0x01;   //实际值0x01 
 	ReadLed_Sts.RSts_LED = 0x01;   //0x02
 	ReadLed_Sts.FLight_LED = 0x01;  //0x04
 	ReadLed_Sts.KEY_LED1 = 0x01;   //0x08
@@ -114,36 +114,36 @@ static void RLEDSts_Init(void)
 }
 
 /*************************************************************************
-�����ܣ�LED��ʾ/LED����/�㰴LED��ʼ������
-����汾��V1.0
-��    �ڣ� 2019/5/31
-��    �ߣ�Orange
-��    �ģ���
+程序功能：LED显示/LED照明/点按LED初始化配置
+程序版本：V1.0
+日    期： 2019/5/31
+作    者：Orange
+修    改：无
 *************************************************************************/
 
 static void LED_Init(void)                                                                                                                                                                         
 {
 	GPIO_InitTypeDef  GPIO_InitStructure;
  	
-	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB | RCC_APB2Periph_GPIOC | RCC_APB2Periph_GPIOA, ENABLE);	      //ʹ��PB�˿�ʱ��
-	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP; 		                                //�������
-	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;		                                //IO���ٶ�Ϊ50MHz
+	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB | RCC_APB2Periph_GPIOC | RCC_APB2Periph_GPIOA, ENABLE);	      //使能PB端口时钟
+	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP; 		                                //推挽输出
+	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;		                                //IO口速度为50MHz
 	
 	//KEY_Sts_LED init
 	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_5;    
 	GPIO_Init(GPIOA, &GPIO_InitStructure);	  				         
-	GPIO_ResetBits(GPIOA, GPIO_Pin_5);  		//�ϵ��Ĭ�ϣ������ת��������������������
+	GPIO_ResetBits(GPIOA, GPIO_Pin_5);  		//上电后默认，电机不转动，长按按键后电机启动
 	
 	//MCU_Sts_LED & Data_Sts_LED & Return_Sts_LED & Front_Light_LED init
-	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_5 | GPIO_Pin_6 | GPIO_Pin_7 | GPIO_Pin_8; //PB5-8 �˿�����
-	GPIO_Init(GPIOB, &GPIO_InitStructure);					                                 //�����趨������ʼ��GPIOB
-	GPIO_SetBits(GPIOB,GPIO_Pin_5);						                         			//PB5������ָʾ�ƣ�
-	GPIO_ResetBits(GPIOB,GPIO_Pin_6 | GPIO_Pin_7 | GPIO_Pin_8);                       		//PB6(����״̬)��PB7(����ָʾ)��PB8(ǰ������)
+	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_5 | GPIO_Pin_6 | GPIO_Pin_7 | GPIO_Pin_8; //PB5-8 端口配置
+	GPIO_Init(GPIOB, &GPIO_InitStructure);					                                 //根据设定参数初始化GPIOB
+	GPIO_SetBits(GPIOB,GPIO_Pin_5);						                         			//PB5（工作指示灯）
+	GPIO_ResetBits(GPIOB,GPIO_Pin_6 | GPIO_Pin_7 | GPIO_Pin_8);                       		//PB6(数据状态)、PB7(返航指示)、PB8(前照明灯)
 	
 	//KEY_To_LED1 & KEY_To_LED2 init
-	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_11 | GPIO_Pin_12;    //PC11-12 �˿�����, �������
-	GPIO_Init(GPIOC, &GPIO_InitStructure);	  				          //������� ��IO���ٶ�Ϊ50MHz
-	GPIO_ResetBits(GPIOC, GPIO_Pin_11 | GPIO_Pin_12);           //PC11(�㰴LED1)��PC12(�㰴LED2)         
+	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_11 | GPIO_Pin_12;    //PC11-12 端口配置, 推挽输出
+	GPIO_Init(GPIOC, &GPIO_InitStructure);	  				          //推挽输出 ，IO口速度为50MHz
+	GPIO_ResetBits(GPIOC, GPIO_Pin_11 | GPIO_Pin_12);           //PC11(点按LED1)、PC12(点按LED2)         
 }
 
 #if TEST_START
@@ -153,33 +153,33 @@ static void LED_Init(void)
 
 	 GPIO_InitTypeDef  GPIO_InitStructure;
 		
-	 RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOE, ENABLE);	 //ʹ��PB,PE�˿�ʱ��
+	 RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOE, ENABLE);	 //使能PB,PE端口时钟
 
-	 GPIO_InitStructure.GPIO_Pin = GPIO_Pin_2 | GPIO_Pin_5 | GPIO_Pin_6;	    		 //LED1-->PE.5 �˿�����, �������
-	 GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP; 		 //�������
-	 GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;		 //IO���ٶ�Ϊ50MHz
-	 GPIO_Init(GPIOE, &GPIO_InitStructure);	  				 //������� ��IO���ٶ�Ϊ50MHz
-	 GPIO_SetBits(GPIOE,GPIO_Pin_2 | GPIO_Pin_5 | GPIO_Pin_6); 						 //PE.5 ����� 
+	 GPIO_InitStructure.GPIO_Pin = GPIO_Pin_2 | GPIO_Pin_5 | GPIO_Pin_6;	    		 //LED1-->PE.5 端口配置, 推挽输出
+	 GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP; 		 //推挽输出
+	 GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;		 //IO口速度为50MHz
+	 GPIO_Init(GPIOE, &GPIO_InitStructure);	  				 //推挽输出 ，IO口速度为50MHz
+	 GPIO_SetBits(GPIOE,GPIO_Pin_2 | GPIO_Pin_5 | GPIO_Pin_6); 						 //PE.5 输出高 
 	}
 	
 #endif
 
 /*************************************************************************
-�����ܣ�����״̬���ӵ�LEDָʾ
-����汾��V1.0
-��    �ڣ� 2019/6/10
-��    �ߣ�Orange
-��    �ģ���
+程序功能：数据状态连接的LED指示
+程序版本：V1.0
+日    期： 2019/6/10
+作    者：Orange
+修    改：无
 *************************************************************************/
 
 void DataConnect_Sts(void)
 {	
-	//���ӳɹ�������״̬
+	//连接成功，常亮状态
 	if(ReadLed_Sts.DSts_LED == (Recv_Data.RLED_State&0x01))
 	{
 		DATA_LED = 1;
 	}
-	else //�ȴ����ӣ�����״̬
+	else //等待连接，快闪状态
 	{
 		if(0x01 == Tsk_Flg.LED_Display) 
 		{
@@ -189,19 +189,19 @@ void DataConnect_Sts(void)
 }
 
 /*************************************************************************
-�����ܣ�����״̬��LEDָʾ
-����汾��V1.0
-��    �ڣ� 2019/6/10
-��    �ߣ�Orange
-��    �ģ���
-˵    �������ö�ʱ�����ƵƵ���������������ʱ����������ϵͳ��ʵʱ��
+程序功能：返航状态的LED指示
+程序版本：V1.0
+日    期： 2019/6/10
+作    者：Orange
+修    改：无
+说    明：采用定时来控制灯的慢闪，避免用延时函数减低了系统的实时性
 *************************************************************************/
 
 static void Return_LED(void)
 {
 	static u8 cnt = 0;
 	
-	//�����źţ�����״̬,��������4s
+	//返航信号，慢闪状态,慢闪周期4s
 	if(ReadLed_Sts.RSts_LED == ((Recv_Data.RLED_State>>1)&0x01) || 
 	   1 == ADCMont_Flg.BAT_LOWVOL)
 	{
@@ -222,23 +222,23 @@ static void Return_LED(void)
 }
 
 /*************************************************************************
-�����ܣ������ͣ������ָʾ�ƣ����������������̰�����ֹͣ
-����汾��V1.0
-��    �ڣ� 2019/6/10
-��    �ߣ�Orange
-��    �ģ���
-˵    ������
+程序功能：电机启停按键的指示灯，长按灯亮启动，短按灯灭停止
+程序版本：V1.0
+日    期： 2019/6/10
+作    者：Orange
+修    改：无
+说    明：无
 *************************************************************************/
 
 static void KeyStp_LED(void)
 {
 	if(MOTOR_OFF == KEY_Scan())
 	{
-		KEY_Sts_LED = 0;		//���ֹͣ����Ϩ��
+		KEY_Sts_LED = 0;		//电机停止，灯熄灭
 	}
 	else if(MOTOR_ON == KEY_Scan())
 	{
-		KEY_Sts_LED = 1;		//����������Ƴ���
+		KEY_Sts_LED = 1;		//电机启动，灯常亮
 	}
 	else
 	{
@@ -247,12 +247,12 @@ static void KeyStp_LED(void)
 }
 
 /*************************************************************************
-�����ܣ�ǰ��LED�������������ɿ�����
-����汾��V1.0
-��    �ڣ� 2019/6/10
-��    �ߣ�Orange
-��    �ģ���
-˵    ������
+程序功能：前照LED，长按灯亮，松开灯灭
+程序版本：V1.0
+日    期： 2019/6/10
+作    者：Orange
+修    改：无
+说    明：无
 *************************************************************************/
 
 static void KeyFrnt_LED(void)
@@ -268,12 +268,12 @@ static void KeyFrnt_LED(void)
 }
 
 /*************************************************************************
-�����ܣ��㰴LED�������������ɿ�����
-����汾��V1.0
-��    �ڣ� 2019/6/10
-��    �ߣ�Orange
-��    �ģ���
-˵    ������
+程序功能：点按LED，长按灯亮，松开灯灭
+程序版本：V1.0
+日    期： 2019/6/10
+作    者：Orange
+修    改：无
+说    明：无
 *************************************************************************/
 
 static void KEY_To_LED(void)
