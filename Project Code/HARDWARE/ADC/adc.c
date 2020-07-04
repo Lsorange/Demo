@@ -4,7 +4,7 @@
 #include "Public_Value.h"
 
 /***********************************************************************
-È«¾Ö±äÁ¿µÄbit·ÖÅä
+å…¨å±€å˜é‡çš„bitåˆ†é…
 ------------------------------------------------------------------------
 Name								bit					Defination
 ------------------------------------------------------------------------
@@ -20,7 +20,7 @@ Task_Flag	  						7					BAT_FULVOL
 ************************************************************************/
 ADC_FLAG ADCMont_Flg;
 u8 *pADCFlg = (u8*)&ADCMont_Flg;
-u16 ADC_Conversion_Value[5];       //ADC²É¼¯Öµ´æ´¢µÄÊı×é
+u16 ADC_Conversion_Value[5];       //ADCé‡‡é›†å€¼å­˜å‚¨çš„æ•°ç»„
 
 static void ADCFlg_Init(void);
 static void ADC1_GPIO_Config(void);
@@ -32,11 +32,11 @@ static void Vol_Montr(void);
 
 
 /*******************************************************************
-³ÌĞò¹¦ÄÜ£ºµçÁ÷²É¼¯µÄ»Øµ÷º¯Êı£¬100ms task
-³ÌĞò°æ±¾£ºV1.0
-ÈÕ    ÆÚ£º 2019/5/30 
-×÷    Õß£ºOrange
-ĞŞ    ¸Ä£ºÎŞ
+ç¨‹åºåŠŸèƒ½ï¼šç”µæµé‡‡é›†çš„å›è°ƒå‡½æ•°ï¼Œ100ms task
+ç¨‹åºç‰ˆæœ¬ï¼šV1.0
+æ—¥    æœŸï¼š 2019/5/30 
+ä½œ    è€…ï¼šOrange
+ä¿®    æ”¹ï¼šæ— 
 *******************************************************************/
 
 void MCUR_CallBack(void)
@@ -46,11 +46,11 @@ void MCUR_CallBack(void)
 }
 
 /*******************************************************************
-³ÌĞò¹¦ÄÜ£ºµçÑ¹²É¼¯µÄ»Øµ÷º¯Êı£¬1000ms task
-³ÌĞò°æ±¾£ºV1.0
-ÈÕ    ÆÚ£º 2019/5/30 
-×÷    Õß£ºOrange
-ĞŞ    ¸Ä£ºÎŞ
+ç¨‹åºåŠŸèƒ½ï¼šç”µå‹é‡‡é›†çš„å›è°ƒå‡½æ•°ï¼Œ1000ms task
+ç¨‹åºç‰ˆæœ¬ï¼šV1.0
+æ—¥    æœŸï¼š 2019/5/30 
+ä½œ    è€…ï¼šOrange
+ä¿®    æ”¹ï¼šæ— 
 *******************************************************************/
 
 void MVOL_CallBack(void)
@@ -60,11 +60,11 @@ void MVOL_CallBack(void)
 }
 
 /*******************************************************************
-³ÌĞò¹¦ÄÜ£ºADCÄ£¿éµÄ³õÊ¼»¯
-³ÌĞò°æ±¾£ºV1.0
-ÈÕ    ÆÚ£º 2019/5/30 
-×÷    Õß£ºOrange
-ĞŞ    ¸Ä£ºÎŞ
+ç¨‹åºåŠŸèƒ½ï¼šADCæ¨¡å—çš„åˆå§‹åŒ–
+ç¨‹åºç‰ˆæœ¬ï¼šV1.0
+æ—¥    æœŸï¼š 2019/5/30 
+ä½œ    è€…ï¼šOrange
+ä¿®    æ”¹ï¼šæ— 
 *******************************************************************/
 
 void MADC_Init(void)
@@ -76,11 +76,11 @@ void MADC_Init(void)
 }
 
 /*******************************************************************
-³ÌĞò¹¦ÄÜ£ºµçÑ¹µçÁ÷µÄ³õÊ¼»¯
-³ÌĞò°æ±¾£ºV1.0
-ÈÕ    ÆÚ£º 2019/5/30 
-×÷    Õß£ºOrange
-ĞŞ    ¸Ä£ºÎŞ
+ç¨‹åºåŠŸèƒ½ï¼šç”µå‹ç”µæµçš„åˆå§‹åŒ–
+ç¨‹åºç‰ˆæœ¬ï¼šV1.0
+æ—¥    æœŸï¼š 2019/5/30 
+ä½œ    è€…ï¼šOrange
+ä¿®    æ”¹ï¼šæ— 
 *******************************************************************/
 
 static void ADCFlg_Init(void)
@@ -95,11 +95,11 @@ static void ADCFlg_Init(void)
 }
 
 /*******************************************************************
-³ÌĞò¹¦ÄÜ£ºADC1µÄGPIOÅäÖÃ
-³ÌĞò°æ±¾£ºV1.0
-ÈÕ    ÆÚ£º 2019/5/30 
-×÷    Õß£ºOrange
-ĞŞ    ¸Ä£ºÎŞ
+ç¨‹åºåŠŸèƒ½ï¼šADC1çš„GPIOé…ç½®
+ç¨‹åºç‰ˆæœ¬ï¼šV1.0
+æ—¥    æœŸï¼š 2019/5/30 
+ä½œ    è€…ï¼šOrange
+ä¿®    æ”¹ï¼šæ— 
 *******************************************************************/
 
 static void ADC1_GPIO_Config(void)
@@ -113,29 +113,29 @@ static void ADC1_GPIO_Config(void)
 }
  
 /*******************************************************************
-³ÌĞò¹¦ÄÜ£ºADC1ÅäÖÃ
-³ÌĞò°æ±¾£ºV1.0
-ÈÕ    ÆÚ£º 2019/5/30 
-×÷    Õß£ºOrange
-ĞŞ    ¸Ä£ºÎŞ
+ç¨‹åºåŠŸèƒ½ï¼šADC1é…ç½®
+ç¨‹åºç‰ˆæœ¬ï¼šV1.0
+æ—¥    æœŸï¼š 2019/5/30 
+ä½œ    è€…ï¼šOrange
+ä¿®    æ”¹ï¼šæ— 
 *******************************************************************/
 
 static void ADC1_Config(void)
 {
 	ADC_InitTypeDef ADC_InitStructure;
 	
-	RCC_APB2PeriphClockCmd(RCC_APB2Periph_ADC1, ENABLE);	  //Ê¹ÄÜADC1Í¨µÀÊ±ÖÓ
-	RCC_ADCCLKConfig(RCC_PCLK2_Div6);   //ÉèÖÃADC·ÖÆµÒò×Ó6 72M/6=12,ADC×î´óÊ±¼ä²»ÄÜ³¬¹ı14M
+	RCC_APB2PeriphClockCmd(RCC_APB2Periph_ADC1, ENABLE);	  //ä½¿èƒ½ADC1é€šé“æ—¶é’Ÿ
+	RCC_ADCCLKConfig(RCC_PCLK2_Div6);   //è®¾ç½®ADCåˆ†é¢‘å› å­6 72M/6=12,ADCæœ€å¤§æ—¶é—´ä¸èƒ½è¶…è¿‡14M
 
-	ADC_DeInit(ADC1);  //¸´Î»ADC1 
+	ADC_DeInit(ADC1);  //å¤ä½ADC1 
 
-	ADC_InitStructure.ADC_Mode = ADC_Mode_Independent;	//ADC¹¤×÷Ä£Ê½:ADC1ºÍADC2¹¤×÷ÔÚ¶ÀÁ¢Ä£Ê½
-	ADC_InitStructure.ADC_ScanConvMode = ENABLE;	      //Ä£Êı×ª»»¹¤×÷ÔÚÉ¨ÃèÄ£Ê½
-	ADC_InitStructure.ADC_ContinuousConvMode = DISABLE;	//Ä£Êı×ª»»¹¤×÷ÔÚµ¥´Î×ª»»Ä£Ê½
-	ADC_InitStructure.ADC_ExternalTrigConv = ADC_ExternalTrigConv_None;	//×ª»»ÓÉÈí¼ş¶ø²»ÊÇÍâ²¿´¥·¢Æô¶¯
-	ADC_InitStructure.ADC_DataAlign = ADC_DataAlign_Right;	//ADCÊı¾İÓÒ¶ÔÆë
-	ADC_InitStructure.ADC_NbrOfChannel = 5;	//Ë³Ğò½øĞĞ¹æÔò×ª»»µÄADCÍ¨µÀµÄÊıÄ¿
-	ADC_Init(ADC1, &ADC_InitStructure);	//¸ù¾İADC_InitStructÖĞÖ¸¶¨µÄ²ÎÊı³õÊ¼»¯ÍâÉèADCxµÄ¼Ä´æÆ÷ 
+	ADC_InitStructure.ADC_Mode = ADC_Mode_Independent;	//ADCå·¥ä½œæ¨¡å¼:ADC1å’ŒADC2å·¥ä½œåœ¨ç‹¬ç«‹æ¨¡å¼
+	ADC_InitStructure.ADC_ScanConvMode = ENABLE;	      //æ¨¡æ•°è½¬æ¢å·¥ä½œåœ¨æ‰«ææ¨¡å¼
+	ADC_InitStructure.ADC_ContinuousConvMode = DISABLE;	//æ¨¡æ•°è½¬æ¢å·¥ä½œåœ¨å•æ¬¡è½¬æ¢æ¨¡å¼
+	ADC_InitStructure.ADC_ExternalTrigConv = ADC_ExternalTrigConv_None;	//è½¬æ¢ç”±è½¯ä»¶è€Œä¸æ˜¯å¤–éƒ¨è§¦å‘å¯åŠ¨
+	ADC_InitStructure.ADC_DataAlign = ADC_DataAlign_Right;	//ADCæ•°æ®å³å¯¹é½
+	ADC_InitStructure.ADC_NbrOfChannel = 5;	//é¡ºåºè¿›è¡Œè§„åˆ™è½¬æ¢çš„ADCé€šé“çš„æ•°ç›®
+	ADC_Init(ADC1, &ADC_InitStructure);	//æ ¹æ®ADC_InitStructä¸­æŒ‡å®šçš„å‚æ•°åˆå§‹åŒ–å¤–è®¾ADCxçš„å¯„å­˜å™¨ 
 
 	ADC_RegularChannelConfig(ADC1, ADC_Channel_10, 1, ADC_SampleTime_239Cycles5);
 	ADC_RegularChannelConfig(ADC1, ADC_Channel_11, 2, ADC_SampleTime_239Cycles5);
@@ -144,55 +144,55 @@ static void ADC1_Config(void)
 	ADC_RegularChannelConfig(ADC1, ADC_Channel_14, 5, ADC_SampleTime_239Cycles5);
 	
 	ADC_DMACmd(ADC1, ENABLE);
-	ADC_Cmd(ADC1, ENABLE);	    //Ê¹ÄÜÖ¸¶¨µÄADC1
+	ADC_Cmd(ADC1, ENABLE);	    //ä½¿èƒ½æŒ‡å®šçš„ADC1
 	
-	ADC_ResetCalibration(ADC1);	//Ê¹ÄÜ¸´Î»Ğ£×¼  
+	ADC_ResetCalibration(ADC1);	//ä½¿èƒ½å¤ä½æ ¡å‡†  
 	 
-	while(ADC_GetResetCalibrationStatus(ADC1));	//µÈ´ı¸´Î»Ğ£×¼½áÊø
+	while(ADC_GetResetCalibrationStatus(ADC1));	//ç­‰å¾…å¤ä½æ ¡å‡†ç»“æŸ
 	
-	ADC_StartCalibration(ADC1);	 //¿ªÆôADĞ£×¼
+	ADC_StartCalibration(ADC1);	 //å¼€å¯ADæ ¡å‡†
  
-	while(ADC_GetCalibrationStatus(ADC1));	 //µÈ´ıĞ£×¼½áÊø
+	while(ADC_GetCalibrationStatus(ADC1));	 //ç­‰å¾…æ ¡å‡†ç»“æŸ
 	
 }
 
 /*******************************************************************
-³ÌĞò¹¦ÄÜ£ºADC1_DMAÅäÖÃ
-³ÌĞò°æ±¾£ºV1.0
-ÈÕ    ÆÚ£º 2019/5/30 
-×÷    Õß£ºOrange
-ĞŞ    ¸Ä£ºÎŞ
+ç¨‹åºåŠŸèƒ½ï¼šADC1_DMAé…ç½®
+ç¨‹åºç‰ˆæœ¬ï¼šV1.0
+æ—¥    æœŸï¼š 2019/5/30 
+ä½œ    è€…ï¼šOrange
+ä¿®    æ”¹ï¼šæ— 
 *******************************************************************/
 
 static void ADC1_DMA_Config(void)
 {
 	DMA_InitTypeDef DMA_InitStructure;
-	RCC_AHBPeriphClockCmd(RCC_AHBPeriph_DMA1, ENABLE);	//Ê¹ÄÜDMA´«Êä
+	RCC_AHBPeriphClockCmd(RCC_AHBPeriph_DMA1, ENABLE);	//ä½¿èƒ½DMAä¼ è¾“
 	
-	DMA_DeInit(DMA1_Channel1);   //½«DMAµÄÍ¨µÀ1¼Ä´æÆ÷ÖØÉèÎªÈ±Ê¡Öµ
+	DMA_DeInit(DMA1_Channel1);   //å°†DMAçš„é€šé“1å¯„å­˜å™¨é‡è®¾ä¸ºç¼ºçœå€¼
 
-	DMA_InitStructure.DMA_PeripheralBaseAddr = (u32)(&(ADC1 -> DR));  //DMAÍâÉè»ùµØÖ·
-	DMA_InitStructure.DMA_MemoryBaseAddr = (u32)&(ADC_Conversion_Value[0]);  //DMAÄÚ´æ»ùµØÖ·
-	DMA_InitStructure.DMA_DIR = DMA_DIR_PeripheralSRC;  //Êı¾İ´«Êä·½Ïò£¬´ÓÍâÉèµ½ÄÚ´æ
-	DMA_InitStructure.DMA_BufferSize = 5;  //DMAÍ¨µÀµÄDMA»º´æµÄ´óĞ¡
-	DMA_InitStructure.DMA_PeripheralInc = DMA_PeripheralInc_Disable;  //ÍâÉèµØÖ·¼Ä´æÆ÷²»±ä
-	DMA_InitStructure.DMA_MemoryInc = DMA_MemoryInc_Enable;  //ÄÚ´æµØÖ·¼Ä´æÆ÷µİÔö
-	DMA_InitStructure.DMA_PeripheralDataSize = DMA_PeripheralDataSize_HalfWord;  //Êı¾İ¿í¶ÈÎª16Î»
-	DMA_InitStructure.DMA_MemoryDataSize = DMA_MemoryDataSize_HalfWord;      //Êı¾İ¿í¶ÈÎª16Î»
-	DMA_InitStructure.DMA_Mode = DMA_Mode_Circular;  //¹¤×÷ÔÚÑ­»·Ä£Ê½
-	DMA_InitStructure.DMA_Priority = DMA_Priority_High; //DMAÍ¨µÀ xÓµÓĞ¸ßÓÅÏÈ¼¶ 
-	DMA_InitStructure.DMA_M2M = DMA_M2M_Disable;  //DMAÍ¨µÀxÃ»ÓĞÉèÖÃÎªÄÚ´æµ½ÄÚ´æ´«Êä
+	DMA_InitStructure.DMA_PeripheralBaseAddr = (u32)(&(ADC1 -> DR));  //DMAå¤–è®¾åŸºåœ°å€
+	DMA_InitStructure.DMA_MemoryBaseAddr = (u32)&(ADC_Conversion_Value[0]);  //DMAå†…å­˜åŸºåœ°å€
+	DMA_InitStructure.DMA_DIR = DMA_DIR_PeripheralSRC;  //æ•°æ®ä¼ è¾“æ–¹å‘ï¼Œä»å¤–è®¾åˆ°å†…å­˜
+	DMA_InitStructure.DMA_BufferSize = 5;  //DMAé€šé“çš„DMAç¼“å­˜çš„å¤§å°
+	DMA_InitStructure.DMA_PeripheralInc = DMA_PeripheralInc_Disable;  //å¤–è®¾åœ°å€å¯„å­˜å™¨ä¸å˜
+	DMA_InitStructure.DMA_MemoryInc = DMA_MemoryInc_Enable;  //å†…å­˜åœ°å€å¯„å­˜å™¨é€’å¢
+	DMA_InitStructure.DMA_PeripheralDataSize = DMA_PeripheralDataSize_HalfWord;  //æ•°æ®å®½åº¦ä¸º16ä½
+	DMA_InitStructure.DMA_MemoryDataSize = DMA_MemoryDataSize_HalfWord;      //æ•°æ®å®½åº¦ä¸º16ä½
+	DMA_InitStructure.DMA_Mode = DMA_Mode_Circular;  //å·¥ä½œåœ¨å¾ªç¯æ¨¡å¼
+	DMA_InitStructure.DMA_Priority = DMA_Priority_High; //DMAé€šé“ xæ‹¥æœ‰é«˜ä¼˜å…ˆçº§ 
+	DMA_InitStructure.DMA_M2M = DMA_M2M_Disable;  //DMAé€šé“xæ²¡æœ‰è®¾ç½®ä¸ºå†…å­˜åˆ°å†…å­˜ä¼ è¾“
 	DMA_Init(DMA1_Channel1, &DMA_InitStructure);  //
 	
 	DMA_Cmd(DMA1_Channel1, ENABLE);
 }
 
 /*******************************************************************
-³ÌĞò¹¦ÄÜ£ºADC²É¼¯Öµ×ª»»
-³ÌĞò°æ±¾£ºV1.0
-ÈÕ    ÆÚ£º 2019/5/30 
-×÷    Õß£ºOrange
-ĞŞ    ¸Ä£ºÎŞ
+ç¨‹åºåŠŸèƒ½ï¼šADCé‡‡é›†å€¼è½¬æ¢
+ç¨‹åºç‰ˆæœ¬ï¼šV1.0
+æ—¥    æœŸï¼š 2019/5/30 
+ä½œ    è€…ï¼šOrange
+ä¿®    æ”¹ï¼šæ— 
 *******************************************************************/
 
 static void ADC_Convert(void)
@@ -204,22 +204,22 @@ static void ADC_Convert(void)
 }
 
 /*******************************************************************
-³ÌĞò¹¦ÄÜ£ºµç»úµçÁ÷µÄ¼à²â
-³ÌĞò°æ±¾£ºV1.0
-ÈÕ    ÆÚ£º 2019/5/30 
-×÷    Õß£ºOrange
-ĞŞ    ¸Ä£ºÎŞ
+ç¨‹åºåŠŸèƒ½ï¼šç”µæœºç”µæµçš„ç›‘æµ‹
+ç¨‹åºç‰ˆæœ¬ï¼šV1.0
+æ—¥    æœŸï¼š 2019/5/30 
+ä½œ    è€…ï¼šOrange
+ä¿®    æ”¹ï¼šæ— 
 *******************************************************************/
 
 static void Cur_Montr(void)
 {
 	static u8 M1_Cnt, M2_Cnt, M3_Cnt, M4_Cnt;
 	
-	//¼ì²âM1µç»úµÄµ±Ç°µçÁ÷×´Ì¬
+	//æ£€æµ‹M1ç”µæœºçš„å½“å‰ç”µæµçŠ¶æ€
 	if(ADC_Conversion_Value[0] > Over_Current_Volatge)
 	{
 		M1_Cnt++;
-		if(M1_Cnt >= FILT_CNT)  //ÂË²¨´¦Àí
+		if(M1_Cnt >= FILT_CNT)  //æ»¤æ³¢å¤„ç†
 		{
 			ADCMont_Flg.M1_OVERCUR = 0x01;
 			M1_Cnt = 0;
@@ -235,7 +235,7 @@ static void Cur_Montr(void)
 		ADCMont_Flg.M1_OVERCUR = 0;
 	}
 	
-	//¼ì²âM2µç»úµÄµ±Ç°µçÁ÷×´Ì¬
+	//æ£€æµ‹M2ç”µæœºçš„å½“å‰ç”µæµçŠ¶æ€
 	if(ADC_Conversion_Value[1] > Over_Current_Volatge)
 	{
 		M2_Cnt++;
@@ -255,7 +255,7 @@ static void Cur_Montr(void)
 		ADCMont_Flg.M2_OVERCUR = 0;
 	}
 	
-	//¼ì²âM3µç»úµÄµ±Ç°µçÁ÷×´Ì¬
+	//æ£€æµ‹M3ç”µæœºçš„å½“å‰ç”µæµçŠ¶æ€
 	if(ADC_Conversion_Value[2] > Over_Current_Volatge)
 	{
 		M3_Cnt++;
@@ -275,7 +275,7 @@ static void Cur_Montr(void)
 		ADCMont_Flg.M3_OVERCUR = 0;
 	}
 	
-	//¼ì²âM4µç»úµÄµ±Ç°µçÁ÷×´Ì¬
+	//æ£€æµ‹M4ç”µæœºçš„å½“å‰ç”µæµçŠ¶æ€
 	if(ADC_Conversion_Value[3] > Over_Current_Volatge)
 	{
 		M4_Cnt++;
@@ -297,19 +297,19 @@ static void Cur_Montr(void)
 }
 
 /*******************************************************************
-³ÌĞò¹¦ÄÜ£ºĞîµç³ØµçÑ¹µÄ¼à²â
-³ÌĞò°æ±¾£ºV1.0
-ÈÕ    ÆÚ£º 2019/5/30 
-×÷    Õß£ºOrange
-ĞŞ    ¸Ä£ºÎŞ
+ç¨‹åºåŠŸèƒ½ï¼šè“„ç”µæ± ç”µå‹çš„ç›‘æµ‹
+ç¨‹åºç‰ˆæœ¬ï¼šV1.0
+æ—¥    æœŸï¼š 2019/5/30 
+ä½œ    è€…ï¼šOrange
+ä¿®    æ”¹ï¼šæ— 
 *******************************************************************/
 
 static void Vol_Montr(void)
 {
-	/****¼ì²âĞîµç³ØµçÑ¹µÄ×´Ì¬****/
+	/****æ£€æµ‹è“„ç”µæ± ç”µå‹çš„çŠ¶æ€****/
 	if(ADC_Conversion_Value[4] >= Bat_FulVol)
 	{
-		*pADCFlg = (*pADCFlg) & 0x0f;   //Çå³ıÉÏÒ»¸öµçÑ¹×´Ì¬
+		*pADCFlg = (*pADCFlg) & 0x0f;   //æ¸…é™¤ä¸Šä¸€ä¸ªç”µå‹çŠ¶æ€
 		ADCMont_Flg.BAT_FULVOL = 0x01;
 		return;
 	}
@@ -341,8 +341,8 @@ static void Vol_Montr(void)
 	}
 	
 	if(((Bat_LowVol <= ADC_Conversion_Value[4]) && 
-			(ADC_Conversion_Value[4] < Bat_MidVol)) || 
-			(ADC_Conversion_Value[4] < Bat_LowVol))
+		(ADC_Conversion_Value[4] < Bat_MidVol)) || 
+		(ADC_Conversion_Value[4] < Bat_LowVol))
 	{
 		*pADCFlg = (*pADCFlg) & 0x0f;
 		ADCMont_Flg.BAT_LOWVOL = 0x01;
