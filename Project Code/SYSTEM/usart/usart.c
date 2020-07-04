@@ -183,12 +183,12 @@ void USART1_IRQHandler(void)
 {
     if(USART_GetITStatus(USART1,USART_IT_IDLE) == SET)
     {
-       Data_Len = USART1 -> SR;
-       Data_Len = USART1-> DR; //清USART_IT_IDLE标志
-			 DMA_Cmd(DMA1_Channel5, DISABLE);    //关闭DMA
-		   Data_Len = RX_SIZE - DMA_GetCurrDataCounter(DMA1_Channel5);      //得到真正接收数据个数  
-		   DMA1_Channel5->CNDTR = RX_SIZE;                        //重新设置接收数据个数  
-			
+       	Data_Len = USART1 -> SR;
+       	Data_Len = USART1-> DR; //清USART_IT_IDLE标志
+	DMA_Cmd(DMA1_Channel5, DISABLE);    //关闭DMA
+	Data_Len = RX_SIZE - DMA_GetCurrDataCounter(DMA1_Channel5);      //得到真正接收数据个数  
+	DMA1_Channel5->CNDTR = RX_SIZE;                        //重新设置接收数据个数  
+	
        RX_Flg = 1;                      //接收数据标志位置1
     }
 }
