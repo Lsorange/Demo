@@ -4,7 +4,7 @@
 #include "sys.h" 
 #define  BOUND  9600
 
-//²âÊÔ
+//æµ‹è¯•
 #define USART_REC_LEN  			200
 #define  EN_USART1_RX 1
 
