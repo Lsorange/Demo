@@ -15,7 +15,7 @@
 #define MOTOR_OFF  0x01
 #define MOTOR_ON   0x02 
 
-//≤‚ ‘”√
+//ÊµãËØï
 #define KEY_Sts_LED PAout(5)
 
 #if TEST_START
