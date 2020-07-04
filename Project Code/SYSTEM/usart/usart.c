@@ -5,19 +5,19 @@
 #include "Public_Value.h"
 
 /*******************************************
-USARTÊý¾Ý½ÓÊÕÍê³É±êÖ¾Î»£ºRX_Flg
-±äÁ¿ÀàÐÍ£ºglobal volatile value
-ÉêÃ÷Î»ÖÃ£ºPublic_Value.h
+USARTæ•°æ®æŽ¥æ”¶å®Œæˆæ ‡å¿—ä½ï¼šRX_Flg
+å˜é‡ç±»åž‹ï¼šglobal volatile value
+ç”³æ˜Žä½ç½®ï¼šPublic_Value.h
 ********************************************/
 volatile u8 RX_Flg = 0;
 volatile u8 Data_Len = 0;
 
 /****************************************************************************************
-³ÌÐò¹¦ÄÜ£ºUSARTÄ£¿éµÄ³õÊ¼»¯
-³ÌÐò°æ±¾£ºV1.0
-ÈÕ    ÆÚ£º2019/6/18
-×÷    Õß£ºOrange
-ÐÞ    ¸Ä£ºÎÞ
+ç¨‹åºåŠŸèƒ½ï¼šUSARTæ¨¡å—çš„åˆå§‹åŒ–
+ç¨‹åºç‰ˆæœ¬ï¼šV1.0
+æ—¥    æœŸï¼š2019/6/18
+ä½œ    è€…ï¼šOrange
+ä¿®    æ”¹ï¼šæ— 
 ****************************************************************************************/
 
 void MUSART_Init(void)
@@ -28,116 +28,116 @@ void MUSART_Init(void)
 }
 
 /****************************************************************************************
-³ÌÐò¹¦ÄÜ£ºUSARTµÄÅäÖÃ
-³ÌÐò°æ±¾£ºV1.0
-ÈÕ    ÆÚ£º2019/6/18
-×÷    Õß£ºOrange
-ÐÞ    ¸Ä£ºÎÞ
+ç¨‹åºåŠŸèƒ½ï¼šUSARTçš„é…ç½®
+ç¨‹åºç‰ˆæœ¬ï¼šV1.0
+æ—¥    æœŸï¼š2019/6/18
+ä½œ    è€…ï¼šOrange
+ä¿®    æ”¹ï¼šæ— 
 ****************************************************************************************/
   
 void usart_init(u32 bound)
 {
-  GPIO_InitTypeDef GPIO_InitStructure;
+  	GPIO_InitTypeDef GPIO_InitStructure;
 	USART_InitTypeDef USART_InitStructure;
 	NVIC_InitTypeDef NVIC_InitStructure;
 	 
-	RCC_APB2PeriphClockCmd(RCC_APB2Periph_USART1 | RCC_APB2Periph_GPIOA, ENABLE);	//Ê¹ÄÜUSART1£¬GPIOAÊ±ÖÓ
+	RCC_APB2PeriphClockCmd(RCC_APB2Periph_USART1 | RCC_APB2Periph_GPIOA, ENABLE);	//ä½¿èƒ½USART1ï¼ŒGPIOAæ—¶é’Ÿ
   
 	//USART1_TX   GPIOA.9
-  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_9; //PA.9 
-  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
-  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP;	//¸´ÓÃÍÆÍìÊä³ö
-  GPIO_Init(GPIOA, &GPIO_InitStructure);//³õÊ¼»¯GPIOA.9
+	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_9; //PA.9 
+	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP;	//å¤ç”¨æŽ¨æŒ½è¾“å‡º
+	GPIO_Init(GPIOA, &GPIO_InitStructure);//åˆå§‹åŒ–GPIOA.9
    
-  //USART1_RX	  GPIOA.10³õÊ¼»¯
-  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_10;//PA10
-  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;//¸¡¿ÕÊäÈë
-  GPIO_Init(GPIOA, &GPIO_InitStructure);//³õÊ¼»¯GPIOA.10  
+  	//USART1_RX	  GPIOA.10åˆå§‹åŒ–
+ 	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_10;//PA10
+  	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;//æµ®ç©ºè¾“å…¥
+  	GPIO_Init(GPIOA, &GPIO_InitStructure);//åˆå§‹åŒ–GPIOA.10  
 
-  //Usart1 NVIC ÅäÖÃ
-  NVIC_InitStructure.NVIC_IRQChannel = USART1_IRQn;
-	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority=1;//ÇÀÕ¼ÓÅÏÈ¼¶1
-	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 3;		//×ÓÓÅÏÈ¼¶3
-	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;			//IRQÍ¨µÀÊ¹ÄÜ
-	NVIC_Init(&NVIC_InitStructure);	//¸ù¾ÝÖ¸¶¨µÄ²ÎÊý³õÊ¼»¯VIC¼Ä´æÆ÷
+  	//Usart1 NVIC é…ç½®
+  	NVIC_InitStructure.NVIC_IRQChannel = USART1_IRQn;
+	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority=1;//æŠ¢å ä¼˜å…ˆçº§1
+	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 3;		//å­ä¼˜å…ˆçº§3
+	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;			//IRQé€šé“ä½¿èƒ½
+	NVIC_Init(&NVIC_InitStructure);	//æ ¹æ®æŒ‡å®šçš„å‚æ•°åˆå§‹åŒ–VICå¯„å­˜å™¨
   
-   //USART ³õÊ¼»¯ÉèÖÃ
-	USART_InitStructure.USART_BaudRate = bound;//´®¿Ú²¨ÌØÂÊ
-	USART_InitStructure.USART_WordLength = USART_WordLength_8b;//×Ö³¤Îª8Î»Êý¾Ý¸ñÊ½
-	USART_InitStructure.USART_StopBits = USART_StopBits_1;//Ò»¸öÍ£Ö¹Î»
-	USART_InitStructure.USART_Parity = USART_Parity_No;//ÎÞÆæÅ¼Ð£ÑéÎ»
-	USART_InitStructure.USART_HardwareFlowControl = USART_HardwareFlowControl_None;//ÎÞÓ²¼þÊý¾ÝÁ÷¿ØÖÆ
-	USART_InitStructure.USART_Mode = USART_Mode_Rx | USART_Mode_Tx;	//ÊÕ·¢Ä£Ê½
+   	//USART åˆå§‹åŒ–è®¾ç½®
+	USART_InitStructure.USART_BaudRate = bound;//ä¸²å£æ³¢ç‰¹çŽ‡
+	USART_InitStructure.USART_WordLength = USART_WordLength_8b;//å­—é•¿ä¸º8ä½æ•°æ®æ ¼å¼
+	USART_InitStructure.USART_StopBits = USART_StopBits_1;//ä¸€ä¸ªåœæ­¢ä½
+	USART_InitStructure.USART_Parity = USART_Parity_No;//æ— å¥‡å¶æ ¡éªŒä½
+	USART_InitStructure.USART_HardwareFlowControl = USART_HardwareFlowControl_None;//æ— ç¡¬ä»¶æ•°æ®æµæŽ§åˆ¶
+	USART_InitStructure.USART_Mode = USART_Mode_Rx | USART_Mode_Tx;	//æ”¶å‘æ¨¡å¼
 
-  USART_Init(USART1, &USART_InitStructure);      //³õÊ¼»¯´®¿Ú1
-  USART_ITConfig(USART1, USART_IT_IDLE, ENABLE); //Èô×ÜÏß¿ÕÏÐ£¬²úÉúÖÐ¶Ï 
-  USART_DMACmd(USART1,USART_DMAReq_Rx,ENABLE);   //¿ªÆô´®¿ÚDMA½ÓÊÕ
+ 	USART_Init(USART1, &USART_InitStructure);      //åˆå§‹åŒ–ä¸²å£1
+  	USART_ITConfig(USART1, USART_IT_IDLE, ENABLE); //è‹¥æ€»çº¿ç©ºé—²ï¼Œäº§ç”Ÿä¸­æ–­ 
+  	USART_DMACmd(USART1,USART_DMAReq_Rx,ENABLE);   //å¼€å¯ä¸²å£DMAæŽ¥æ”¶
 	
-  USART_Cmd(USART1, ENABLE);                     //Ê¹ÄÜ´®¿Ú1 
+  	USART_Cmd(USART1, ENABLE);                     //ä½¿èƒ½ä¸²å£1 
 }
 
 /*****************************************************************************
-³ÌÐò¹¦ÄÜ£º433MÄ£Ê½³õÊ¼»¯ÅäÖÃ
-³ÌÐò°æ±¾£ºV1.0
-Èë¿Ú²ÎÊý£ºÎÞ
-·µ»Ø²ÎÊý£ºÎÞ
-ÈÕ    ÆÚ£º2019/6/18
-×÷    Õß£ºOrange
-ÐÞ    ¸Ä£ºÎÞ
+ç¨‹åºåŠŸèƒ½ï¼š433Mæ¨¡å¼åˆå§‹åŒ–é…ç½®
+ç¨‹åºç‰ˆæœ¬ï¼šV1.0
+å…¥å£å‚æ•°ï¼šæ— 
+è¿”å›žå‚æ•°ï¼šæ— 
+æ—¥    æœŸï¼š2019/6/18
+ä½œ    è€…ï¼šOrange
+ä¿®    æ”¹ï¼šæ— 
 ******************************************************************************/
 
 void Mode_Init(void)
 {
 	GPIO_InitTypeDef  GPIO_InitStructure;
  	
-	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB, ENABLE);	                           //Ê¹ÄÜPB¶Ë¿ÚÊ±ÖÓ
-	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP; 		                             //ÍÆÍìÊä³ö
-	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;		                             //IO¿ÚËÙ¶ÈÎª50MHz
-	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_1 | GPIO_Pin_10 | GPIO_Pin_11;            //PB¶Ë¿ÚÅäÖÃ£¬MD0¡¢MD1¡¢AUX
-	GPIO_Init(GPIOB, &GPIO_InitStructure);					                                 //¸ù¾ÝÉè¶¨²ÎÊý³õÊ¼»¯GPIOB
+	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB, ENABLE);	                           //ä½¿èƒ½PBç«¯å£æ—¶é’Ÿ
+	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP; 		                             //æŽ¨æŒ½è¾“å‡º
+	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;		                             //IOå£é€Ÿåº¦ä¸º50MHz
+	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_1 | GPIO_Pin_10 | GPIO_Pin_11;            //PBç«¯å£é…ç½®ï¼ŒMD0ã€MD1ã€AUX
+	GPIO_Init(GPIOB, &GPIO_InitStructure);					                                 //æ ¹æ®è®¾å®šå‚æ•°åˆå§‹åŒ–GPIOB
 	
 	GPIO_ResetBits(GPIOB, GPIO_Pin_1 | GPIO_Pin_10 | GPIO_Pin_11);
 }
 
 /*******************************************************************
-³ÌÐò¹¦ÄÜ£ºUSART_DMAÅäÖÃ
-³ÌÐò°æ±¾£ºV1.0
-ÈÕ    ÆÚ£º 2019/5/30 
-×÷    Õß£ºOrange
-ÐÞ    ¸Ä£ºÎÞ
+ç¨‹åºåŠŸèƒ½ï¼šUSART_DMAé…ç½®
+ç¨‹åºç‰ˆæœ¬ï¼šV1.0
+æ—¥    æœŸï¼š 2019/5/30 
+ä½œ    è€…ï¼šOrange
+ä¿®    æ”¹ï¼šæ— 
 *******************************************************************/
 
 void USART_DMA_Config(void)
 {
 	DMA_InitTypeDef DMA_InitStructure;
-	RCC_AHBPeriphClockCmd(RCC_AHBPeriph_DMA1, ENABLE);	//Ê¹ÄÜDMA´«Êä
+	RCC_AHBPeriphClockCmd(RCC_AHBPeriph_DMA1, ENABLE);	//ä½¿èƒ½DMAä¼ è¾“
 	
-	DMA_DeInit(DMA1_Channel5);   //½«DMAµÄÍ¨µÀ1¼Ä´æÆ÷ÖØÉèÎªÈ±Ê¡Öµ
+	DMA_DeInit(DMA1_Channel5);   //å°†DMAçš„é€šé“1å¯„å­˜å™¨é‡è®¾ä¸ºç¼ºçœå€¼
 
-	DMA_InitStructure.DMA_PeripheralBaseAddr = (u32)(&(USART1 -> DR));  //DMAÍâÉè»ùµØÖ·
-	DMA_InitStructure.DMA_MemoryBaseAddr = (u32)&(RX_Data[0]);  //DMAÄÚ´æ»ùµØÖ·
-	DMA_InitStructure.DMA_DIR = DMA_DIR_PeripheralSRC;  //Êý¾Ý´«Êä·½Ïò£¬´ÓÍâÉèµ½ÄÚ´æ
-	DMA_InitStructure.DMA_BufferSize = RX_SIZE;  //DMAÍ¨µÀµÄDMA»º´æµÄ´óÐ¡
-	DMA_InitStructure.DMA_PeripheralInc = DMA_PeripheralInc_Disable;  //ÍâÉèµØÖ·¼Ä´æÆ÷²»±ä
-	DMA_InitStructure.DMA_MemoryInc = DMA_MemoryInc_Enable;  //ÄÚ´æµØÖ·¼Ä´æÆ÷µÝÔö
-	DMA_InitStructure.DMA_PeripheralDataSize = DMA_PeripheralDataSize_Byte;  //Êý¾Ý¿í¶ÈÎª8Î»
-	DMA_InitStructure.DMA_MemoryDataSize = DMA_PeripheralDataSize_Byte;      //Êý¾Ý¿í¶ÈÎª8Î»
-	DMA_InitStructure.DMA_Mode = DMA_Mode_Normal;  //¹¤×÷ÔÚÑ­»·Ä£Ê½
-	DMA_InitStructure.DMA_Priority = DMA_Priority_VeryHigh; //DMAÍ¨µÀ xÓµ×î¸ßÓÅÏÈ¼¶ 
-	DMA_InitStructure.DMA_M2M = DMA_M2M_Disable;  //DMAÍ¨µÀxÃ»ÓÐÉèÖÃÎªÄÚ´æµ½ÄÚ´æ´«Êä
+	DMA_InitStructure.DMA_PeripheralBaseAddr = (u32)(&(USART1 -> DR));  //DMAå¤–è®¾åŸºåœ°å€
+	DMA_InitStructure.DMA_MemoryBaseAddr = (u32)&(RX_Data[0]);  //DMAå†…å­˜åŸºåœ°å€
+	DMA_InitStructure.DMA_DIR = DMA_DIR_PeripheralSRC;  //æ•°æ®ä¼ è¾“æ–¹å‘ï¼Œä»Žå¤–è®¾åˆ°å†…å­˜
+	DMA_InitStructure.DMA_BufferSize = RX_SIZE;  //DMAé€šé“çš„DMAç¼“å­˜çš„å¤§å°
+	DMA_InitStructure.DMA_PeripheralInc = DMA_PeripheralInc_Disable;  //å¤–è®¾åœ°å€å¯„å­˜å™¨ä¸å˜
+	DMA_InitStructure.DMA_MemoryInc = DMA_MemoryInc_Enable;  //å†…å­˜åœ°å€å¯„å­˜å™¨é€’å¢ž
+	DMA_InitStructure.DMA_PeripheralDataSize = DMA_PeripheralDataSize_Byte;  //æ•°æ®å®½åº¦ä¸º8ä½
+	DMA_InitStructure.DMA_MemoryDataSize = DMA_PeripheralDataSize_Byte;      //æ•°æ®å®½åº¦ä¸º8ä½
+	DMA_InitStructure.DMA_Mode = DMA_Mode_Normal;  //å·¥ä½œåœ¨å¾ªçŽ¯æ¨¡å¼
+	DMA_InitStructure.DMA_Priority = DMA_Priority_VeryHigh; //DMAé€šé“ xæ‹¥æœ€é«˜ä¼˜å…ˆçº§ 
+	DMA_InitStructure.DMA_M2M = DMA_M2M_Disable;  //DMAé€šé“xæ²¡æœ‰è®¾ç½®ä¸ºå†…å­˜åˆ°å†…å­˜ä¼ è¾“
 	DMA_Init(DMA1_Channel5, &DMA_InitStructure);  //
 	
 	DMA_Cmd(DMA1_Channel5, ENABLE);
 }
 
 /*****************************************************************************
-³ÌÐò¹¦ÄÜ£ºUSART1·¢ËÍÊý¾Ý
-³ÌÐò°æ±¾£ºV1.0
-Èë¿Ú²ÎÊý£ºTxBuffer£º·¢ËÍÊý¾ÝµÄÊ×µØÖ·£¬Length£ºÊý¾ÝµÄ³¤¶È
-·µ»Ø²ÎÊý£ºÎÞ
-ÈÕ    ÆÚ£º2019/6/18
-×÷    Õß£ºOrange
-ÐÞ    ¸Ä£ºÎÞ
+ç¨‹åºåŠŸèƒ½ï¼šUSART1å‘é€æ•°æ®
+ç¨‹åºç‰ˆæœ¬ï¼šV1.0
+å…¥å£å‚æ•°ï¼šTxBufferï¼šå‘é€æ•°æ®çš„é¦–åœ°å€ï¼ŒLengthï¼šæ•°æ®çš„é•¿åº¦
+è¿”å›žå‚æ•°ï¼šæ— 
+æ—¥    æœŸï¼š2019/6/18
+ä½œ    è€…ï¼šOrange
+ä¿®    æ”¹ï¼šæ— 
 ******************************************************************************/
 
 void uart_tx_bytes( u8* TxBuffer, u8 Length)
@@ -152,18 +152,18 @@ void uart_tx_bytes( u8* TxBuffer, u8 Length)
 }
 
 /*******************************************************************
-³ÌÐò¹¦ÄÜ£ºDMA_ENABLEÅäÖÃ
-³ÌÐò°æ±¾£ºV1.0
-ÈÕ    ÆÚ£º 2019/5/30 
-×÷    Õß£ºOrange
-ÐÞ    ¸Ä£ºÎÞ
+ç¨‹åºåŠŸèƒ½ï¼šDMA_ENABLEé…ç½®
+ç¨‹åºç‰ˆæœ¬ï¼šV1.0
+æ—¥    æœŸï¼š 2019/5/30 
+ä½œ    è€…ï¼šOrange
+ä¿®    æ”¹ï¼šæ— 
 *******************************************************************/
 
 void DMAEN_Config(void)
 {
 	if((1 == State_SW) && (1 == RX_Flg))
 	{ 
-		DMA_Cmd(DMA1_Channel5, ENABLE);  //¿ªÆôDMA
+		DMA_Cmd(DMA1_Channel5, ENABLE);  //å¼€å¯DMA
 	}
 	else
 	{
@@ -172,11 +172,11 @@ void DMAEN_Config(void)
 }
 
 /*******************************************************************
-³ÌÐò¹¦ÄÜ£ºUSART1_ISRÅäÖÃ
-³ÌÐò°æ±¾£ºV1.0
-ÈÕ    ÆÚ£º 2019/5/30 
-×÷    Õß£ºOrange
-ÐÞ    ¸Ä£ºÎÞ
+ç¨‹åºåŠŸèƒ½ï¼šUSART1_ISRé…ç½®
+ç¨‹åºç‰ˆæœ¬ï¼šV1.0
+æ—¥    æœŸï¼š 2019/5/30 
+ä½œ    è€…ï¼šOrange
+ä¿®    æ”¹ï¼šæ— 
 *******************************************************************/
 
 void USART1_IRQHandler(void)
@@ -184,12 +184,12 @@ void USART1_IRQHandler(void)
     if(USART_GetITStatus(USART1,USART_IT_IDLE) == SET)
     {
        Data_Len = USART1 -> SR;
-       Data_Len = USART1-> DR; //ÇåUSART_IT_IDLE±êÖ¾
-			 DMA_Cmd(DMA1_Channel5, DISABLE);    //¹Ø±ÕDMA
-		   Data_Len = RX_SIZE - DMA_GetCurrDataCounter(DMA1_Channel5);      //µÃµ½ÕæÕý½ÓÊÕÊý¾Ý¸öÊý  
-		   DMA1_Channel5->CNDTR = RX_SIZE;                        //ÖØÐÂÉèÖÃ½ÓÊÕÊý¾Ý¸öÊý  
+       Data_Len = USART1-> DR; //æ¸…USART_IT_IDLEæ ‡å¿—
+			 DMA_Cmd(DMA1_Channel5, DISABLE);    //å…³é—­DMA
+		   Data_Len = RX_SIZE - DMA_GetCurrDataCounter(DMA1_Channel5);      //å¾—åˆ°çœŸæ­£æŽ¥æ”¶æ•°æ®ä¸ªæ•°  
+		   DMA1_Channel5->CNDTR = RX_SIZE;                        //é‡æ–°è®¾ç½®æŽ¥æ”¶æ•°æ®ä¸ªæ•°  
 			
-       RX_Flg = 1;                      //½ÓÊÕÊý¾Ý±êÖ¾Î»ÖÃ1
+       RX_Flg = 1;                      //æŽ¥æ”¶æ•°æ®æ ‡å¿—ä½ç½®1
     }
 }
 
