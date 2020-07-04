@@ -131,7 +131,7 @@ static u8 Read_MotorMode(u8 Motor_State)
 	u8 R_Mode = 0;
 	
 	R_Mode = (Motor_State&0x04) | (Motor_State&0x40) |
-			 (Motor_State&0x10) | (Motor_State&0x20); //init state | stop state | forword state | reverse state
+		 (Motor_State&0x10) | (Motor_State&0x20); //init state | stop state | forword state | reverse state
 	
 	return R_Mode;
 }
@@ -261,14 +261,14 @@ static void MotorDir_Init(void)
 
 static void MainMotor_Control(u16 time, u8 mode, u8 speed_mode)
 {
-	/*****************************************************************
+	/*****************************************************************************
 	标志位的位定义
-	------------------------------------------------------------------
-	Name				Flag         bit      value			Func
-	------------------------------------------------------------------
-	Sts_Flg				Direct_Flg    0        0x01			无需延时直接进入其他状态
-						Switch_Flg    1        0x02     	正反转的切换状态
-	*****************************************************************/
+	------------------------------------------------------------------------------
+	Name		Flag         bit      value		Func
+	------------------------------------------------------------------------------
+	Sts_Flg		Direct_Flg    0        0x01		无需延时直接进入其他状态
+			Switch_Flg    1        0x02     	正反转的切换状态
+	*****************************************************************************/
 	static u16 num = 0;
 	static u8 MainSts_Flg = 0;  //从stop_state直接切换到Forward_State、Reverse_State
 	
