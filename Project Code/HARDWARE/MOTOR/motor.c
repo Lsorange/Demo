@@ -6,33 +6,33 @@
 /*********************************************************************************************
 全局变量的bit分配
 ----------------------------------------------------------------------------------------------
-Name			bit				Defination
+Name				bit				Defination
 ----------------------------------------------------------------------------------------------
 RMainMotor_State	7				reserved        //Motor3Cur_Sts
-			6				Stop_State      //Motor2Cur_Sts
-			5				Forward_State
-			4				Reverse_State
-			3				reserved	//Stop_State
-			2				Init_State
-			1				reserved        //Motor1Cur_Sts
-			0				MainMotor_Num
+					6				Stop_State      //Motor2Cur_Sts
+					5				Forward_State
+					4				Reverse_State
+					3				reserved	//Stop_State
+					2				Init_State
+					1				reserved        //Motor1Cur_Sts
+					0				MainMotor_Num
 ----------------------------------------------------------------------------------------------
 RExtdMotor_State	7				reserved
-			6				Stop_State
-			5				Forward_State
-			4				Reverse_State
-			3				reserved        //Stop_State
-			2				Init_State
-			1				ExtdMotor_Num
-			0				reserved        //Motor1Cur_Sts
+					6				Stop_State
+					5				Forward_State
+					4				Reverse_State
+					3				reserved        //Stop_State
+					2				Init_State
+					1				ExtdMotor_Num
+					0				reserved        //Motor1Cur_Sts
 ----------------------------------------------------------------------------------------------
 RMainMotor_Spd		7				reserved        //Spd_Level6
-			6				Spd_Level5
-			5				Spd_Level4
-			4				Spd_Level3
-			3				Spd_Level2
-			2				Spd_Level1
-			1				Spd_Level0
+					6				Spd_Level5
+					5				Spd_Level4
+					4				Spd_Level3
+					3				Spd_Level2
+					2				Spd_Level1
+					1				Spd_Level0
 RExtdMotor_Spd		0				SpdMode_State
 ----------------------------------------------------------------------------------------------
 **********************************************************************************************/
