@@ -3,39 +3,39 @@
 #include "timer.h"
 #include "Public_Value.h"
 
-/***********************************************************************
-È«¾Ö±äÁ¿µÄbit·ÖÅä
-------------------------------------------------------------------------
-Name								bit					Defination
-------------------------------------------------------------------------
-RMainMotor_State	           		7					reserved        //Motor3Cur_Sts
-									6					Stop_State      //Motor2Cur_Sts
-									5					Forward_State
-									4					Reverse_State
-									3					reserved		//Stop_State
-									2					Init_State
-									1					reserved        //Motor1Cur_Sts
-									0					MainMotor_Num
-------------------------------------------------------------------------
-RExtdMotor_State	  				7					reserved
-									6					Stop_State
-									5					Forward_State
-									4					Reverse_State
-									3					reserved        //Stop_State
-									2					Init_State
-									1					ExtdMotor_Num
-									0					reserved        //Motor1Cur_Sts
-------------------------------------------------------------------------
-RMainMotor_Spd						7					reserved        //Spd_Level6
-									6					Spd_Level5
-									5					Spd_Level4
-									4					Spd_Level3
-									3					Spd_Level2
-									2					Spd_Level1
-									1					Spd_Level0
-RExtdMotor_Spd						0					SpdMode_State
-------------------------------------------------------------------------
-***********************************************************************/
+/*********************************************************************************************
+å…¨å±€å˜é‡çš„bitåˆ†é…
+----------------------------------------------------------------------------------------------
+Name			bit				Defination
+----------------------------------------------------------------------------------------------
+RMainMotor_State	7				reserved        //Motor3Cur_Sts
+			6				Stop_State      //Motor2Cur_Sts
+			5				Forward_State
+			4				Reverse_State
+			3				reserved	//Stop_State
+			2				Init_State
+			1				reserved        //Motor1Cur_Sts
+			0				MainMotor_Num
+----------------------------------------------------------------------------------------------
+RExtdMotor_State	7				reserved
+			6				Stop_State
+			5				Forward_State
+			4				Reverse_State
+			3				reserved        //Stop_State
+			2				Init_State
+			1				ExtdMotor_Num
+			0				reserved        //Motor1Cur_Sts
+----------------------------------------------------------------------------------------------
+RMainMotor_Spd		7				reserved        //Spd_Level6
+			6				Spd_Level5
+			5				Spd_Level4
+			4				Spd_Level3
+			3				Spd_Level2
+			2				Spd_Level1
+			1				Spd_Level0
+RExtdMotor_Spd		0				SpdMode_State
+----------------------------------------------------------------------------------------------
+**********************************************************************************************/
 //u8 RMainMotor_State = 0;
 //u8 RExtdMotor_State = 0;
 //u8 RMainMotor_Spd = 0;
@@ -59,7 +59,7 @@ static void ExtdMotor_Forward(void);
 static void MainMotor_Reverse(void);
 static void ExtdMotor_Reverse(void);
 
-/*************************µç»ú¿ØÖÆ×´Ì¬¶¨Òå******************************/
+/*************************ç”µæœºæ§åˆ¶çŠ¶æ€å®šä¹‰******************************/
 enum State
 {
 	SpeedMode_State = 0x01,
@@ -80,11 +80,11 @@ enum Num
 };
 
 /*******************************************************************
-³ÌĞò¹¦ÄÜ£ºµç»úÄ£¿éµÄ»Øµ÷º¯Êı£¬20ms task
-³ÌĞò°æ±¾£ºV1.0
-ÈÕ    ÆÚ£º 2019/5/30
-×÷    Õß£ºOrange
-ĞŞ    ¸Ä£ºÎŞ
+ç¨‹åºåŠŸèƒ½ï¼šç”µæœºæ¨¡å—çš„å›è°ƒå‡½æ•°ï¼Œ20ms task
+ç¨‹åºç‰ˆæœ¬ï¼šV1.0
+æ—¥    æœŸï¼š 2019/5/30
+ä½œ    è€…ï¼šOrange
+ä¿®    æ”¹ï¼šæ— 
 *******************************************************************/
 
 void MMotor_CallBack(void)
@@ -93,11 +93,11 @@ void MMotor_CallBack(void)
 }
 
 /*******************************************************************
-³ÌĞò¹¦ÄÜ£ºµç»úÄ£¿éµÄ³õÊ¼»¯
-³ÌĞò°æ±¾£ºV1.0
-ÈÕ    ÆÚ£º 2019/5/30
-×÷    Õß£ºOrange
-ĞŞ    ¸Ä£ºÎŞ
+ç¨‹åºåŠŸèƒ½ï¼šç”µæœºæ¨¡å—çš„åˆå§‹åŒ–
+ç¨‹åºç‰ˆæœ¬ï¼šV1.0
+æ—¥    æœŸï¼š 2019/5/30
+ä½œ    è€…ï¼šOrange
+ä¿®    æ”¹ï¼šæ— 
 *******************************************************************/
 
 void MMotor_Init(void)
@@ -108,14 +108,14 @@ void MMotor_Init(void)
 }
 
 /*******************************************************************
-³ÌĞò¹¦ÄÜ£º½âÎö´Ó433M½ÓÊÕµÄĞÅÏ¢
-³ÌĞò°æ±¾£ºV1.0
-ÈÕ    ÆÚ£º 2019/5/30
-×÷    Õß£ºOrange
-ĞŞ    ¸Ä£ºÎŞ
+ç¨‹åºåŠŸèƒ½ï¼šè§£æä»433Mæ¥æ”¶çš„ä¿¡æ¯
+ç¨‹åºç‰ˆæœ¬ï¼šV1.0
+æ—¥    æœŸï¼š 2019/5/30
+ä½œ    è€…ï¼šOrange
+ä¿®    æ”¹ï¼šæ— 
 *******************************************************************/
 
-/*****¶ÁÈ¡µç»úµÄĞòÁĞºÅ*****/
+/*****è¯»å–ç”µæœºçš„åºåˆ—å·*****/
 static u8 Read_MotorNum(void)
 {
 	u8 Ser_Num = 0;
@@ -125,7 +125,7 @@ static u8 Read_MotorNum(void)
 	return Ser_Num;
 }
 
-/*****¶ÁÈ¡µç»úµÄ×´Ì¬*****/
+/*****è¯»å–ç”µæœºçš„çŠ¶æ€*****/
 static u8 Read_MotorMode(u8 Motor_State)
 {
 	u8 R_Mode = 0;
@@ -136,7 +136,7 @@ static u8 Read_MotorMode(u8 Motor_State)
 	return R_Mode;
 }
 
-/*****¶ÁÈ¡µç»úµÄËÙ¶Èµ²Î»*****/
+/*****è¯»å–ç”µæœºçš„é€Ÿåº¦æŒ¡ä½*****/
 static u8 Read_MotorSpd(u8 Motor_Spd)
 {
 	u8 R_Spd = 0;
@@ -146,7 +146,7 @@ static u8 Read_MotorSpd(u8 Motor_Spd)
 	{
 		if(0x01 == (Motor_Spd >> i))
 		{
-			R_Spd = (0x01 << i) | 0x01;  //ÈôÓĞËÙ¶ÈĞÅºÅ£¬Í¬Ê±Ê¹ÄÜËÙ¶ÈÄ£Ê½
+			R_Spd = (0x01 << i) | 0x01;  //è‹¥æœ‰é€Ÿåº¦ä¿¡å·ï¼ŒåŒæ—¶ä½¿èƒ½é€Ÿåº¦æ¨¡å¼
 			break;
 		}
 	}
@@ -154,13 +154,13 @@ static u8 Read_MotorSpd(u8 Motor_Spd)
 	return R_Spd;
 }
 
-/*****¶ÁÈ¡µç»úµÄÇĞ»»×´Ì¬*****/
+/*****è¯»å–ç”µæœºçš„åˆ‡æ¢çŠ¶æ€*****/
 static u8 Read_MotorFlg(u8 Motor_Flg)
 {
 	u8 Switch_Sts = 0;
 	static u8 Temp_Flag = 0x30;
 	
-	Motor_Flg = Motor_Flg & 0x30;                     //¶ÁÈ¡ÇĞ»»×´Ì¬Ö»Õë¶ÔÕı·´×ªÇĞ»»£¬¹ıÂËµô³õÊ¼»¯ºÍÍ£Ö¹×´Ì¬
+	Motor_Flg = Motor_Flg & 0x30;                     //è¯»å–åˆ‡æ¢çŠ¶æ€åªé’ˆå¯¹æ­£åè½¬åˆ‡æ¢ï¼Œè¿‡æ»¤æ‰åˆå§‹åŒ–å’Œåœæ­¢çŠ¶æ€
 	if(Motor_Flg != (Motor_Flg&Temp_Flag))
 	{
 		Switch_Sts = 0x02;
@@ -175,17 +175,17 @@ static u8 Read_MotorFlg(u8 Motor_Flg)
 	return Switch_Sts;
 }
 
-/*****¶ÁÈ¡µç»úµÄµçÁ÷×´Ì¬*****/
+/*****è¯»å–ç”µæœºçš„ç”µæµçŠ¶æ€*****/
 static u8 Read_MotorCurSts(u8 Cur_Sts, u8 Motor_Type)
 {
 	u8 MotorCur_State = 0;
 	
-	//Ö÷µç»ú
+	//ä¸»ç”µæœº
 	if(Main_Type == Motor_Type)
 	{
 		MotorCur_State = ((Cur_Sts&0x01) | (Cur_Sts&0x02) | (Cur_Sts&0x04));
 	}
-	else  //À©Õ¹µç»ú
+	else  //æ‰©å±•ç”µæœº
 	{
 		MotorCur_State = (Cur_Sts&0x08);
 	}
@@ -196,11 +196,11 @@ static u8 Read_MotorCurSts(u8 Cur_Sts, u8 Motor_Type)
 ////////////////////////////////////////////////////////////////////////////
 
 /*******************************************************************
-³ÌĞò¹¦ÄÜ£ºµç»ú¿ØÖÆ
-³ÌĞò°æ±¾£ºV1.0
-ÈÕ    ÆÚ£º 2019/5/30
-×÷    Õß£ºOrange
-ĞŞ    ¸Ä£ºÎŞ
+ç¨‹åºåŠŸèƒ½ï¼šç”µæœºæ§åˆ¶
+ç¨‹åºç‰ˆæœ¬ï¼šV1.0
+æ—¥    æœŸï¼š 2019/5/30
+ä½œ    è€…ï¼šOrange
+ä¿®    æ”¹ï¼šæ— 
 *******************************************************************/
 static void Motor_Control(void)
 {
@@ -210,13 +210,13 @@ static void Motor_Control(void)
 	u8 ExtdMotor_Mode = Read_MotorMode(Recv_Data.RExtdMotor_State);
 	u8 ExtdMotor_Spd = Read_MotorSpd(Recv_Data.RExtdMotor_Spd);
 	
-	//Ö÷µç»úµÄĞòÁĞºÅ
+	//ä¸»ç”µæœºçš„åºåˆ—å·
 	if(MainMotor_Num == (Serial_Num&0x01))
 	{
 		MainMotor_Control(MDelay_Time, MainMotor_Mode, MainMotor_Spd);
 	}
 
-	//À©Õ¹µç»úµÄĞòÁĞºÅ
+	//æ‰©å±•ç”µæœºçš„åºåˆ—å·
 	if(ExtdMotor_Num == (Serial_Num&0x02))
 	{
 		ExtdMotor_Control(MDelay_Time, ExtdMotor_Mode, ExtdMotor_Spd);
@@ -226,66 +226,66 @@ static void Motor_Control(void)
 
 
 /*******************************************************************
-³ÌĞò¹¦ÄÜ£ºÖ±Á÷µç»ú·½Ïò¿ØÖÆ³õÊ¼»¯
-³ÌĞò°æ±¾£ºV1.0
-ÈÕ    ÆÚ£º 2019/5/30
-×÷    Õß£ºOrange
-ĞŞ    ¸Ä£ºÎŞ
+ç¨‹åºåŠŸèƒ½ï¼šç›´æµç”µæœºæ–¹å‘æ§åˆ¶åˆå§‹åŒ–
+ç¨‹åºç‰ˆæœ¬ï¼šV1.0
+æ—¥    æœŸï¼š 2019/5/30
+ä½œ    è€…ï¼šOrange
+ä¿®    æ”¹ï¼šæ— 
 *******************************************************************/
 
 static void MotorDir_Init(void)
 {
 	GPIO_InitTypeDef  GPIO_InitStructure;
  	
-	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB | RCC_APB2Periph_GPIOC, ENABLE);	      //Ê¹ÄÜPB¶Ë¿ÚÊ±ÖÓ
-	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP; 		                                //ÍÆÍìÊä³ö
-	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;		                                //IO¿ÚËÙ¶ÈÎª50MHz
+	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB | RCC_APB2Periph_GPIOC, ENABLE);	      //ä½¿èƒ½PBç«¯å£æ—¶é’Ÿ
+	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP; 		                                //æ¨æŒ½è¾“å‡º
+	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;		                                //IOå£é€Ÿåº¦ä¸º50MHz
 	
-	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_12 | GPIO_Pin_13 | GPIO_Pin_14 | GPIO_Pin_15; //PB12-15 ¶Ë¿ÚÅäÖÃ
-	GPIO_Init(GPIOB, &GPIO_InitStructure);					                                 //¸ù¾İÉè¶¨²ÎÊı³õÊ¼»¯GPIOB
-	GPIO_ResetBits(GPIOB, GPIO_Pin_12 | GPIO_Pin_13 | GPIO_Pin_14 | GPIO_Pin_15);    //PB12(IN_1A)¡¢PB13(IN_1B)¡¢PB14(IN_2A)¡¢PB15(IN_2B)
+	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_12 | GPIO_Pin_13 | GPIO_Pin_14 | GPIO_Pin_15; //PB12-15 ç«¯å£é…ç½®
+	GPIO_Init(GPIOB, &GPIO_InitStructure);					                                 //æ ¹æ®è®¾å®šå‚æ•°åˆå§‹åŒ–GPIOB
+	GPIO_ResetBits(GPIOB, GPIO_Pin_12 | GPIO_Pin_13 | GPIO_Pin_14 | GPIO_Pin_15);    //PB12(IN_1A)ã€PB13(IN_1B)ã€PB14(IN_2A)ã€PB15(IN_2B)
 
-	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_6 | GPIO_Pin_7 | GPIO_Pin_8 | GPIO_Pin_9; //PC6-9 ¶Ë¿ÚÅäÖÃ, ÍÆÍìÊä³ö
-	GPIO_Init(GPIOC, &GPIO_InitStructure);	  				                               //ÍÆÍìÊä³ö £¬IO¿ÚËÙ¶ÈÎª50MHz
-	GPIO_ResetBits(GPIOC, GPIO_Pin_6 | GPIO_Pin_7 | GPIO_Pin_8 | GPIO_Pin_9);        //PC6(IN_3A)¡¢PC7(IN_3B)¡¢PC8(IN_4A)¡¢PC9(IN_4B)
+	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_6 | GPIO_Pin_7 | GPIO_Pin_8 | GPIO_Pin_9; //PC6-9 ç«¯å£é…ç½®, æ¨æŒ½è¾“å‡º
+	GPIO_Init(GPIOC, &GPIO_InitStructure);	  				                               //æ¨æŒ½è¾“å‡º ï¼ŒIOå£é€Ÿåº¦ä¸º50MHz
+	GPIO_ResetBits(GPIOC, GPIO_Pin_6 | GPIO_Pin_7 | GPIO_Pin_8 | GPIO_Pin_9);        //PC6(IN_3A)ã€PC7(IN_3B)ã€PC8(IN_4A)ã€PC9(IN_4B)
 }
 
 
 /****************************************************************************************
-³ÌĞò¹¦ÄÜ£ºÖ±Á÷Ö÷µç»ú¿ØÖÆ£¬Í¬Ê±Ö§³Öµ÷ËÙºÍÕı·´×ªÄ£Ê½
-³ÌĞò°æ±¾£ºV1.0
-ÈÕ    ÆÚ£º 2019/5/30
-×÷    Õß£ºOrange
-ĞŞ    ¸Ä£ºÎŞ
+ç¨‹åºåŠŸèƒ½ï¼šç›´æµä¸»ç”µæœºæ§åˆ¶ï¼ŒåŒæ—¶æ”¯æŒè°ƒé€Ÿå’Œæ­£åè½¬æ¨¡å¼
+ç¨‹åºç‰ˆæœ¬ï¼šV1.0
+æ—¥    æœŸï¼š 2019/5/30
+ä½œ    è€…ï¼šOrange
+ä¿®    æ”¹ï¼šæ— 
 ****************************************************************************************/
 
 static void MainMotor_Control(u16 time, u8 mode, u8 speed_mode)
 {
 	/*****************************************************************
-	±êÖ¾Î»µÄÎ»¶¨Òå
+	æ ‡å¿—ä½çš„ä½å®šä¹‰
 	------------------------------------------------------------------
 	Name				Flag         bit      value			Func
 	------------------------------------------------------------------
-	Sts_Flg				Direct_Flg    0        0x01			ÎŞĞèÑÓÊ±Ö±½Ó½øÈëÆäËû×´Ì¬
-						Switch_Flg    1        0x02     	Õı·´×ªµÄÇĞ»»×´Ì¬
+	Sts_Flg				Direct_Flg    0        0x01			æ— éœ€å»¶æ—¶ç›´æ¥è¿›å…¥å…¶ä»–çŠ¶æ€
+						Switch_Flg    1        0x02     	æ­£åè½¬çš„åˆ‡æ¢çŠ¶æ€
 	*****************************************************************/
 	static u16 num = 0;
-	static u8 MainSts_Flg = 0;  //´Óstop_stateÖ±½ÓÇĞ»»µ½Forward_State¡¢Reverse_State
+	static u8 MainSts_Flg = 0;  //ä»stop_stateç›´æ¥åˆ‡æ¢åˆ°Forward_Stateã€Reverse_State
 	
 	MainSts_Flg = Read_MotorFlg(mode);
 	
 	if(MOTOR_ST == KEY_Scan())
 	{
-		//²âÊÔ
+		//æµ‹è¯•
 		//KEY_Test_LED = 0;
 		
-		//µç»ú´¦ÓÚfree running×´Ì¬
+		//ç”µæœºå¤„äºfree runningçŠ¶æ€
 		if((Init_State == (mode&0x04)) || (Stop_State == (mode&0x40)) || (0x02 == (MainSts_Flg&0xff)))
 		{
 			MainMotor_Init();
 			MainSts_Flg |= 0x01;
 		}
-		else if((++num >= time) || (1 == (MainSts_Flg&0x03))) //µ±µç»ú¼õËÙµ½Ò»¶¨µÄ³Ì¶È£¬¼´¿ÉÇĞ»»Ğı×ª·½Ïò»òÆäÊµ×´Ì¬ÎªÍ£Ö¹×´Ì¬
+		else if((++num >= time) || (1 == (MainSts_Flg&0x03))) //å½“ç”µæœºå‡é€Ÿåˆ°ä¸€å®šçš„ç¨‹åº¦ï¼Œå³å¯åˆ‡æ¢æ—‹è½¬æ–¹å‘æˆ–å…¶å®çŠ¶æ€ä¸ºåœæ­¢çŠ¶æ€
 		{
 			if(SpeedMode_State == (speed_mode&0x01))
 			{
@@ -321,11 +321,11 @@ static void MainMotor_Control(u16 time, u8 mode, u8 speed_mode)
 }
 
 /****************************************************************************************
-³ÌĞò¹¦ÄÜ£ºÀ©Õ¹µç»ú¿ØÖÆ£¬Í¬Ê±Ö§³Öµ÷ËÙºÍÕı·´×ªÄ£Ê½
-³ÌĞò°æ±¾£ºV1.0
-ÈÕ    ÆÚ£º 2019/5/30
-×÷    Õß£ºOrange
-ĞŞ    ¸Ä£ºÎŞ
+ç¨‹åºåŠŸèƒ½ï¼šæ‰©å±•ç”µæœºæ§åˆ¶ï¼ŒåŒæ—¶æ”¯æŒè°ƒé€Ÿå’Œæ­£åè½¬æ¨¡å¼
+ç¨‹åºç‰ˆæœ¬ï¼šV1.0
+æ—¥    æœŸï¼š 2019/5/30
+ä½œ    è€…ï¼šOrange
+ä¿®    æ”¹ï¼šæ— 
 ****************************************************************************************/
 
 static void ExtdMotor_Control(u16 time, u8 mode, u8 speed_mode)
@@ -337,7 +337,7 @@ static void ExtdMotor_Control(u16 time, u8 mode, u8 speed_mode)
 	
 	if(MOTOR_ST == KEY_Scan())
 	{
-		//µç»ú´¦ÓÚfree running×´Ì¬
+		//ç”µæœºå¤„äºfree runningçŠ¶æ€
 		if((Init_State == (mode&0x04)) || (Stop_State == (mode&0x40)) || (0x02 == (ExtdSts_Flg&0xff)))
 		{
 			ExtdMotor_Init();
@@ -380,11 +380,11 @@ static void ExtdMotor_Control(u16 time, u8 mode, u8 speed_mode)
 
 
 /****************************************************************************************
-³ÌĞò¹¦ÄÜ£ºÖ±Á÷Ö÷µç»ú³õÊ¼»¯»òÍ£Ö¹
-³ÌĞò°æ±¾£ºV1.0
-ÈÕ    ÆÚ£º 2019/5/30
-×÷    Õß£ºOrange
-ĞŞ    ¸Ä£ºÎŞ
+ç¨‹åºåŠŸèƒ½ï¼šç›´æµä¸»ç”µæœºåˆå§‹åŒ–æˆ–åœæ­¢
+ç¨‹åºç‰ˆæœ¬ï¼šV1.0
+æ—¥    æœŸï¼š 2019/5/30
+ä½œ    è€…ï¼šOrange
+ä¿®    æ”¹ï¼šæ— 
 ****************************************************************************************/
 
 static void MainMotor_Init(void)
@@ -404,11 +404,11 @@ static void MainMotor_Init(void)
 }
 
 /****************************************************************************************
-³ÌĞò¹¦ÄÜ£ºÖ±Á÷À©Õ¹µç»ú³õÊ¼»¯»òÍ£Ö¹
-³ÌĞò°æ±¾£ºV1.0
-ÈÕ    ÆÚ£º 2019/5/30
-×÷    Õß£ºOrange
-ĞŞ    ¸Ä£ºÎŞ
+ç¨‹åºåŠŸèƒ½ï¼šç›´æµæ‰©å±•ç”µæœºåˆå§‹åŒ–æˆ–åœæ­¢
+ç¨‹åºç‰ˆæœ¬ï¼šV1.0
+æ—¥    æœŸï¼š 2019/5/30
+ä½œ    è€…ï¼šOrange
+ä¿®    æ”¹ï¼šæ— 
 ****************************************************************************************/
 
 static void ExtdMotor_Init(void)
@@ -419,11 +419,11 @@ static void ExtdMotor_Init(void)
 }
 
 /****************************************************************************************
-³ÌĞò¹¦ÄÜ£ºÖ±Á÷Ö÷µç»úµ÷ËÙ
-³ÌĞò°æ±¾£ºV1.0
-ÈÕ    ÆÚ£º 2019/5/30
-×÷    Õß£ºOrange
-ĞŞ    ¸Ä£ºÎŞ
+ç¨‹åºåŠŸèƒ½ï¼šç›´æµä¸»ç”µæœºè°ƒé€Ÿ
+ç¨‹åºç‰ˆæœ¬ï¼šV1.0
+æ—¥    æœŸï¼š 2019/5/30
+ä½œ    è€…ï¼šOrange
+ä¿®    æ”¹ï¼šæ— 
 ****************************************************************************************/
 
 static void MainMotor_SpdMode(u8 spd_level)
@@ -434,7 +434,7 @@ static void MainMotor_SpdMode(u8 spd_level)
 	{
 		if(0x01 == (spd_level >> i))
 		{
-			spd_level = i;  //ÈôÓĞËÙ¶Èµ²Î»µÄ¼ÆËã
+			spd_level = i;  //è‹¥æœ‰é€Ÿåº¦æŒ¡ä½çš„è®¡ç®—
 			break;
 		}
 	}
@@ -445,11 +445,11 @@ static void MainMotor_SpdMode(u8 spd_level)
 }
 
 /****************************************************************************************
-³ÌĞò¹¦ÄÜ£ºÖ±Á÷À©Õ¹µç»úµ÷ËÙ
-³ÌĞò°æ±¾£ºV1.0
-ÈÕ    ÆÚ£º 2019/5/30
-×÷    Õß£ºOrange
-ĞŞ    ¸Ä£ºÎŞ
+ç¨‹åºåŠŸèƒ½ï¼šç›´æµæ‰©å±•ç”µæœºè°ƒé€Ÿ
+ç¨‹åºç‰ˆæœ¬ï¼šV1.0
+æ—¥    æœŸï¼š 2019/5/30
+ä½œ    è€…ï¼šOrange
+ä¿®    æ”¹ï¼šæ— 
 ****************************************************************************************/
 static void ExtdMain_SpdMode(u8 spd_level)
 {
@@ -459,7 +459,7 @@ static void ExtdMain_SpdMode(u8 spd_level)
 	{
 		if(0x01 == (spd_level >> i))
 		{
-			spd_level = i;  //ÈôÓĞËÙ¶Èµ²Î»µÄ¼ÆËã
+			spd_level = i;  //è‹¥æœ‰é€Ÿåº¦æŒ¡ä½çš„è®¡ç®—
 			break;
 		}
 	}
@@ -469,11 +469,11 @@ static void ExtdMain_SpdMode(u8 spd_level)
 
 
 /****************************************************************************************
-³ÌĞò¹¦ÄÜ£ºÖ±Á÷Ö÷µç»úÕı×ª£¬Ö§³Ö¹ıÁ÷±£»¤
-³ÌĞò°æ±¾£ºV1.0
-ÈÕ    ÆÚ£º 2019/5/30
-×÷    Õß£ºOrange
-ĞŞ    ¸Ä£ºÎŞ
+ç¨‹åºåŠŸèƒ½ï¼šç›´æµä¸»ç”µæœºæ­£è½¬ï¼Œæ”¯æŒè¿‡æµä¿æŠ¤
+ç¨‹åºç‰ˆæœ¬ï¼šV1.0
+æ—¥    æœŸï¼š 2019/5/30
+ä½œ    è€…ï¼šOrange
+ä¿®    æ”¹ï¼šæ— 
 ****************************************************************************************/
 
 static void MainMotor_Forward(void)
@@ -518,16 +518,16 @@ static void MainMotor_Forward(void)
 }
 
 /****************************************************************************************
-³ÌĞò¹¦ÄÜ£ºÖ±Á÷À©Õ¹µç»úÕı×ª£¬Ö§³Ö¹ıÁ÷±£»¤
-³ÌĞò°æ±¾£ºV1.0
-ÈÕ    ÆÚ£º 2019/5/30
-×÷    Õß£ºOrange
-ĞŞ    ¸Ä£ºÎŞ
+ç¨‹åºåŠŸèƒ½ï¼šç›´æµæ‰©å±•ç”µæœºæ­£è½¬ï¼Œæ”¯æŒè¿‡æµä¿æŠ¤
+ç¨‹åºç‰ˆæœ¬ï¼šV1.0
+æ—¥    æœŸï¼š 2019/5/30
+ä½œ    è€…ï¼šOrange
+ä¿®    æ”¹ï¼šæ— 
 ****************************************************************************************/
 
 static void ExtdMotor_Forward(void)
 {
-	u8 Cur_State = Read_MotorCurSts(*pADCFlg, Extd_Type);  //*pADCFlg´«µİADCÄ£¿é²É¼¯µÄµçÁ÷Öµ£¬Ö±½Ó´«Öµ
+	u8 Cur_State = Read_MotorCurSts(*pADCFlg, Extd_Type);  //*pADCFlgä¼ é€’ADCæ¨¡å—é‡‡é›†çš„ç”µæµå€¼ï¼Œç›´æ¥ä¼ å€¼
 	
 	if(0 == (Cur_State & ExtdMotor_CurSts))
 	{
@@ -543,11 +543,11 @@ static void ExtdMotor_Forward(void)
 }
 
 /****************************************************************************************
-³ÌĞò¹¦ÄÜ£ºÖ±Á÷Ö÷µç»ú·´×ª£¬Ö§³Ö¹ıÁ÷±£»¤
-³ÌĞò°æ±¾£ºV1.0
-ÈÕ    ÆÚ£º 2019/5/30
-×÷    Õß£ºOrange
-ĞŞ    ¸Ä£ºÎŞ
+ç¨‹åºåŠŸèƒ½ï¼šç›´æµä¸»ç”µæœºåè½¬ï¼Œæ”¯æŒè¿‡æµä¿æŠ¤
+ç¨‹åºç‰ˆæœ¬ï¼šV1.0
+æ—¥    æœŸï¼š 2019/5/30
+ä½œ    è€…ï¼šOrange
+ä¿®    æ”¹ï¼šæ— 
 ****************************************************************************************/
 
 static void MainMotor_Reverse(void)
@@ -592,11 +592,11 @@ static void MainMotor_Reverse(void)
 }
 
 /****************************************************************************************
-³ÌĞò¹¦ÄÜ£ºÖ±Á÷À©Õ¹µç»ú·´×ª£¬Ö§³Ö¹ıÁ÷±£»¤
-³ÌĞò°æ±¾£ºV1.0
-ÈÕ    ÆÚ£º 2019/5/30
-×÷    Õß£ºOrange
-ĞŞ    ¸Ä£ºÎŞ
+ç¨‹åºåŠŸèƒ½ï¼šç›´æµæ‰©å±•ç”µæœºåè½¬ï¼Œæ”¯æŒè¿‡æµä¿æŠ¤
+ç¨‹åºç‰ˆæœ¬ï¼šV1.0
+æ—¥    æœŸï¼š 2019/5/30
+ä½œ    è€…ï¼šOrange
+ä¿®    æ”¹ï¼šæ— 
 ****************************************************************************************/
 
 static void ExtdMotor_Reverse(void)
