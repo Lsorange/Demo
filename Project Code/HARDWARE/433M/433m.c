@@ -6,12 +6,12 @@
 #include "delay.h"
 
 /*********************************************************************************
-433MÊÕ·¢µÄÐÅºÅ
+433Mæ”¶å‘çš„ä¿¡å·
 ----------------------------------------------------------------------------------
 TX_Message                             Value                 Discription
 ----------------------------------------------------------------------------------
 CRC_Start                              CRC_Start[0]          0x48
-ADCMont_Flg(¸ßËÄÎ»)                       *pADCFlg     		 Battery value
+ADCMont_Flg(é«˜å››ä½)                    *pADCFlg     	  Battery value
 DataCont_Sts                           DataCont_Sts          DataConnect_Sts
 CRC_End                                CRC_End[0]            0x45												 
 ----------------------------------------------------------------------------------
@@ -31,15 +31,15 @@ CRC_End                                CRC_End[0]            0x45
 *********************************************************************************/
 u8 TX_Data[TX_SIZE] = {0};
 u8 RX_Data[RX_SIZE] = {0};
-volatile u8 State_SW = 0x01;        //0x01(bit0)±íÊ¾¿ªÆôÊý¾Ý½ÓÊÕ£¬0x02(bit1)±íÊ¾¿ªÆôÊý¾Ý·¢ËÍ£¬Í¬Ò»Ê±¿ÌÖ»ÓÐÒ»ÖÖ×´Ì¬
-const u8 DataCont_Sts = 0x01;       //433MÄ£¿éÁ¬½Ó×´Ì¬
+volatile u8 State_SW = 0x01;        //0x01(bit0)è¡¨ç¤ºå¼€å¯æ•°æ®æŽ¥æ”¶ï¼Œ0x02(bit1)è¡¨ç¤ºå¼€å¯æ•°æ®å‘é€ï¼ŒåŒä¸€æ—¶åˆ»åªæœ‰ä¸€ç§çŠ¶æ€
+const u8 DataCont_Sts = 0x01;       //433Mæ¨¡å—è¿žæŽ¥çŠ¶æ€
 const u8 CRC_Data[CRC_SIZE] = 
 {
-	0x48, //¶ÔÓ¦ASCII 'H' -> Head
-	0x45, //¶ÔÓ¦ASCII 'E' -> End
+	0x48, //å¯¹åº”ASCII 'H' -> Head
+	0x45, //å¯¹åº”ASCII 'E' -> End
 };
 
-//²âÊÔ
+//æµ‹è¯•
 const u8 Data[RX_SIZE] = 
 {
 	0x48, 0x01, 0x04, 0x04, 0x02,
@@ -75,18 +75,18 @@ static boolean Dect_CRC(void);
 
 
 /*****************************************************************************
-³ÌÐò¹¦ÄÜ£º433MÄ£¿éµÄ»Øµ÷º¯Êý, 10ms task
-³ÌÐò°æ±¾£ºV1.0
-Èë¿Ú²ÎÊý£ºdata
-·µ»Ø²ÎÊý£ºÎÞ
-ÈÕ    ÆÚ£º2019/6/18
-×÷    Õß£ºOrange
-ÐÞ    ¸Ä£ºÎÞ
+ç¨‹åºåŠŸèƒ½ï¼š433Mæ¨¡å—çš„å›žè°ƒå‡½æ•°, 10ms task
+ç¨‹åºç‰ˆæœ¬ï¼šV1.0
+å…¥å£å‚æ•°ï¼šdata
+è¿”å›žå‚æ•°ï¼šæ— 
+æ—¥    æœŸï¼š2019/6/18
+ä½œ    è€…ï¼šOrange
+ä¿®    æ”¹ï¼šæ— 
 ******************************************************************************/
 
 void MCom_CallBack(void)
 {
-	//²âÊÔ
+	//æµ‹è¯•
 	//RecDataFunc();
 	Deal_RecvData();
 	Send_Data();
@@ -94,13 +94,13 @@ void MCom_CallBack(void)
 }
 
 /*****************************************************************************
-³ÌÐò¹¦ÄÜ£º433MÄ£¿éµÄ³õÊ¼»¯
-³ÌÐò°æ±¾£ºV1.0
-Èë¿Ú²ÎÊý£ºdata
-·µ»Ø²ÎÊý£ºÎÞ
-ÈÕ    ÆÚ£º2019/6/18
-×÷    Õß£ºOrange
-ÐÞ    ¸Ä£ºÎÞ
+ç¨‹åºåŠŸèƒ½ï¼š433Mæ¨¡å—çš„åˆå§‹åŒ–
+ç¨‹åºç‰ˆæœ¬ï¼šV1.0
+å…¥å£å‚æ•°ï¼šdata
+è¿”å›žå‚æ•°ï¼šæ— 
+æ—¥    æœŸï¼š2019/6/18
+ä½œ    è€…ï¼šOrange
+ä¿®    æ”¹ï¼šæ— 
 ******************************************************************************/
 
 void MCom_Init(void)
@@ -109,13 +109,13 @@ void MCom_Init(void)
 }
 
 /*****************************************************************************
-³ÌÐò¹¦ÄÜ£ºRecv_Data½á¹¹Ìå³ÉÔ±³õÊ¼»¯
-³ÌÐò°æ±¾£ºV1.0
-Èë¿Ú²ÎÊý£ºdata
-·µ»Ø²ÎÊý£ºÎÞ
-ÈÕ    ÆÚ£º2019/6/18
-×÷    Õß£ºOrange
-ÐÞ    ¸Ä£ºÎÞ
+ç¨‹åºåŠŸèƒ½ï¼šRecv_Dataç»“æž„ä½“æˆå‘˜åˆå§‹åŒ–
+ç¨‹åºç‰ˆæœ¬ï¼šV1.0
+å…¥å£å‚æ•°ï¼šdata
+è¿”å›žå‚æ•°ï¼šæ— 
+æ—¥    æœŸï¼š2019/6/18
+ä½œ    è€…ï¼šOrange
+ä¿®    æ”¹ï¼šæ— 
 ******************************************************************************/
 
 static void RData_Init(void)
@@ -133,13 +133,13 @@ static void RData_Init(void)
 #if TEST_END
 
 	/*****************************************************************************
-	³ÌÐò¹¦ÄÜ£º½«½ÓÊÕµÄÊý¾Ý²åÈëµ½»·ÐÎ»º³å¶ÓÁÐÖÐ
-	³ÌÐò°æ±¾£ºV1.0
-	Èë¿Ú²ÎÊý£º*DataArr
-	·µ»Ø²ÎÊý£ºFULL_ERR & RW_OK
-	ÈÕ    ÆÚ£º2019/6/18
-	×÷    Õß£ºOrange
-	ÐÞ    ¸Ä£ºÎÞ
+	ç¨‹åºåŠŸèƒ½ï¼šå°†æŽ¥æ”¶çš„æ•°æ®æ’å…¥åˆ°çŽ¯å½¢ç¼“å†²é˜Ÿåˆ—ä¸­
+	ç¨‹åºç‰ˆæœ¬ï¼šV1.0
+	å…¥å£å‚æ•°ï¼š*DataArr
+	è¿”å›žå‚æ•°ï¼šFULL_ERR & RW_OK
+	æ—¥    æœŸï¼š2019/6/18
+	ä½œ    è€…ï¼šOrange
+	ä¿®    æ”¹ï¼šæ— 
 	******************************************************************************/
 
 	static boolean QueueRecv_Insert(u8* DataArr)
@@ -167,13 +167,13 @@ static void RData_Init(void)
 	}
 
 	/*****************************************************************************
-	³ÌÐò¹¦ÄÜ£º½«»·ÐÎ»º³å¶ÓÁÐÖÐµÄÊý¾ÝÈ¡³ö²¢ÊÍ·ÅÄÚ´æ
-	³ÌÐò°æ±¾£ºV1.0
-	Èë¿Ú²ÎÊý£º*data
-	·µ»Ø²ÎÊý£ºEMPTY_ERR & RW_OK
-	ÈÕ    ÆÚ£º2019/6/18
-	×÷    Õß£ºOrange
-	ÐÞ    ¸Ä£ºÎÞ
+	ç¨‹åºåŠŸèƒ½ï¼šå°†çŽ¯å½¢ç¼“å†²é˜Ÿåˆ—ä¸­çš„æ•°æ®å–å‡ºå¹¶é‡Šæ”¾å†…å­˜
+	ç¨‹åºç‰ˆæœ¬ï¼šV1.0
+	å…¥å£å‚æ•°ï¼š*data
+	è¿”å›žå‚æ•°ï¼šEMPTY_ERR & RW_OK
+	æ—¥    æœŸï¼š2019/6/18
+	ä½œ    è€…ï¼šOrange
+	ä¿®    æ”¹ï¼šæ— 
 	******************************************************************************/
 
 	static boolean QueueRecv_Del(u8 *data)
@@ -199,13 +199,13 @@ static void RData_Init(void)
 #endif
 
 /*****************************************************************************
-³ÌÐò¹¦ÄÜ£º433M·¢ËÍµÄÊý¾Ý
-³ÌÐò°æ±¾£ºV1.0
-Èë¿Ú²ÎÊý£ºÎÞ
-·µ»Ø²ÎÊý£ºÎÞ
-ÈÕ    ÆÚ£º2019/6/18
-×÷    Õß£ºOrange
-ÐÞ    ¸Ä£ºÎÞ
+ç¨‹åºåŠŸèƒ½ï¼š433Må‘é€çš„æ•°æ®
+ç¨‹åºç‰ˆæœ¬ï¼šV1.0
+å…¥å£å‚æ•°ï¼šæ— 
+è¿”å›žå‚æ•°ï¼šæ— 
+æ—¥    æœŸï¼š2019/6/18
+ä½œ    è€…ï¼šOrange
+ä¿®    æ”¹ï¼šæ— 
 ******************************************************************************/
 
 static void Send_Data(void)
@@ -218,7 +218,7 @@ static void Send_Data(void)
 	if(1 == (State_SW>>1))
 	{
 		uart_tx_bytes(TX_Data, TX_SIZE);
-		//²âÊÔ
+		//æµ‹è¯•
 		KEY_Two_LED = ~KEY_Two_LED;
 	}
 }
@@ -226,25 +226,25 @@ static void Send_Data(void)
 #if TEST_START
 
 	/*****************************************************************************
-	³ÌÐò¹¦ÄÜ£º´¦Àí433M½ÓÊÕµÄÊý¾Ý
-	³ÌÐò°æ±¾£ºV1.0
-	Èë¿Ú²ÎÊý£ºÎÞ
-	·µ»Ø²ÎÊý£ºÎÞ
-	ÈÕ    ÆÚ£º2019/6/18
-	×÷    Õß£ºOrange
-	ÐÞ    ¸Ä£ºÎÞ
+	ç¨‹åºåŠŸèƒ½ï¼šå¤„ç†433MæŽ¥æ”¶çš„æ•°æ®
+	ç¨‹åºç‰ˆæœ¬ï¼šV1.0
+	å…¥å£å‚æ•°ï¼šæ— 
+	è¿”å›žå‚æ•°ï¼šæ— 
+	æ—¥    æœŸï¼š2019/6/18
+	ä½œ    è€…ï¼šOrange
+	ä¿®    æ”¹ï¼šæ— 
 	******************************************************************************/
 
 	static void Deal_RecvData(void)
 	{
 		u8 i;
 		//u8 R_Data[RX_SIZE] = {0};
-		u8* pReData = (u8*)&Recv_Data;  //È¡½á¹¹ÌåµÚÒ»¸öÔªËØµÄµØÖ·
+		u8* pReData = (u8*)&Recv_Data;  //å–ç»“æž„ä½“ç¬¬ä¸€ä¸ªå…ƒç´ çš„åœ°å€
 		
-		if((1 == RX_Flg) && (SET == DMA_GetFlagStatus(DMA1_FLAG_TC5)))   //ÅÐ¶ÏÊÇ·ñ½ÓÊÕºÍDMA´«ÊäÍê³É
+		if((1 == RX_Flg) && (SET == DMA_GetFlagStatus(DMA1_FLAG_TC5)))   //åˆ¤æ–­æ˜¯å¦æŽ¥æ”¶å’ŒDMAä¼ è¾“å®Œæˆ
 		{
 			
-			if((CONT_OK == Is_Concted()) && (CRC_OK == Dect_CRC() && (RX_SIZE == Data_Len)))  //¼ì²éÊý¾ÝÁ¬½Ó×´Ì¬ºÍCRCÎ»Êý¾ÝÊÇ·ñÕýÈ·ÒÔ¼°Êý¾Ý³¤¶È
+			if((CONT_OK == Is_Concted()) && (CRC_OK == Dect_CRC() && (RX_SIZE == Data_Len)))  //æ£€æŸ¥æ•°æ®è¿žæŽ¥çŠ¶æ€å’ŒCRCä½æ•°æ®æ˜¯å¦æ­£ç¡®ä»¥åŠæ•°æ®é•¿åº¦
 			{
 				for(i = 0; i < RX_SIZE; i++)
 				{
@@ -256,7 +256,7 @@ static void Send_Data(void)
 						//pReData[i] = RX_Data[i];
 						if(RW_OK == QueueRecv_Del(&R_Data[i]))
 						{
-							pReData[i] = R_Data[i]; //·Ö±ð¶ÔÓ¦¸ø½á¹¹ÌåµÄÔªËØ¸³Öµ
+							pReData[i] = R_Data[i]; //åˆ†åˆ«å¯¹åº”ç»™ç»“æž„ä½“çš„å…ƒç´ èµ‹å€¼
 						}
 						else
 						{
@@ -269,10 +269,10 @@ static void Send_Data(void)
 					}
 					*/
 					
-					pReData[i] = RX_Data[i]; //·Ö±ð¶ÔÓ¦¸ø½á¹¹ÌåµÄÔªËØ¸³Öµ
+					pReData[i] = RX_Data[i]; //åˆ†åˆ«å¯¹åº”ç»™ç»“æž„ä½“çš„å…ƒç´ èµ‹å€¼
 				}
 				
-				//²âÊÔ
+				//æµ‹è¯•
 				for(i = 0; i < RX_SIZE; i++)
 				{
 					if(pReData[i] != Data[i])
@@ -292,9 +292,9 @@ static void Send_Data(void)
 
 			}
 			
-			RX_Flg = 0;     //½ÓÊÕÍê³É±êÖ¾ÇåÁã
-			DMA_ClearFlag(DMA1_FLAG_TC5); //Çå³ýDMA´«ÊäÍê³É±êÖ¾Î»
-			State_SW = (State_SW&0x00) | 0x02;  //½«½ÓÊÕÊý¾Ý±êÖ¾Î»ÖÃ0£¬½«·¢ËÍÊý¾Ý±êÖ¾ÖÃ1
+			RX_Flg = 0;     //æŽ¥æ”¶å®Œæˆæ ‡å¿—æ¸…é›¶
+			DMA_ClearFlag(DMA1_FLAG_TC5); //æ¸…é™¤DMAä¼ è¾“å®Œæˆæ ‡å¿—ä½
+			State_SW = (State_SW&0x00) | 0x02;  //å°†æŽ¥æ”¶æ•°æ®æ ‡å¿—ä½ç½®0ï¼Œå°†å‘é€æ•°æ®æ ‡å¿—ç½®1
 		}
 		else
 		{
@@ -303,13 +303,13 @@ static void Send_Data(void)
 	}
 
 	/*****************************************************************************
-	³ÌÐò¹¦ÄÜ£ºÅÐ¶Ï433MÄ£¿éÁ¬½ÓµÄ×´Ì¬
-	³ÌÐò°æ±¾£ºV1.0
-	Èë¿Ú²ÎÊý£ºÎÞ
-	·µ»Ø²ÎÊý£ºÎÞ
-	ÈÕ    ÆÚ£º2019/6/18
-	×÷    Õß£ºOrange
-	ÐÞ    ¸Ä£ºÎÞ
+	ç¨‹åºåŠŸèƒ½ï¼šåˆ¤æ–­433Mæ¨¡å—è¿žæŽ¥çš„çŠ¶æ€
+	ç¨‹åºç‰ˆæœ¬ï¼šV1.0
+	å…¥å£å‚æ•°ï¼šæ— 
+	è¿”å›žå‚æ•°ï¼šæ— 
+	æ—¥    æœŸï¼š2019/6/18
+	ä½œ    è€…ï¼šOrange
+	ä¿®    æ”¹ï¼šæ— 
 	******************************************************************************/
 
 	static boolean Is_Concted(void)
@@ -327,13 +327,13 @@ static void Send_Data(void)
 	}
 
 	/*****************************************************************************
-	³ÌÐò¹¦ÄÜ£ººË¶ÔÊý¾ÝÐ£ÑéÎ»µÄ½á¹û
-	³ÌÐò°æ±¾£ºV1.0
-	Èë¿Ú²ÎÊý£ºÎÞ
-	·µ»Ø²ÎÊý£ºÎÞ
-	ÈÕ    ÆÚ£º2019/6/18
-	×÷    Õß£ºOrange
-	ÐÞ    ¸Ä£ºÎÞ
+	ç¨‹åºåŠŸèƒ½ï¼šæ ¸å¯¹æ•°æ®æ ¡éªŒä½çš„ç»“æžœ
+	ç¨‹åºç‰ˆæœ¬ï¼šV1.0
+	å…¥å£å‚æ•°ï¼šæ— 
+	è¿”å›žå‚æ•°ï¼šæ— 
+	æ—¥    æœŸï¼š2019/6/18
+	ä½œ    è€…ï¼šOrange
+	ä¿®    æ”¹ï¼šæ— 
 	******************************************************************************/
 
 	static boolean Dect_CRC(void)
@@ -381,8 +381,8 @@ static void Send_Data(void)
 				//do nothing;
 			}
 			
-			RX_Flg = 0;     //½ÓÊÕÍê³É±êÖ¾ÇåÁã
-			State_SW = (State_SW&0x00) | 0x02;  //½«½ÓÊÕÊý¾Ý±êÖ¾Î»ÖÃ0£¬½«·¢ËÍÊý¾Ý±êÖ¾ÖÃ1
+			RX_Flg = 0;     //æŽ¥æ”¶å®Œæˆæ ‡å¿—æ¸…é›¶
+			State_SW = (State_SW&0x00) | 0x02;  //å°†æŽ¥æ”¶æ•°æ®æ ‡å¿—ä½ç½®0ï¼Œå°†å‘é€æ•°æ®æ ‡å¿—ç½®1
 		}
 		else
 		{
