@@ -31,18 +31,18 @@ void MCom_Init(void);
 
 extern u8 RX_Data[RX_SIZE];
 
-//²âÊÔ
+//Â²Ã¢ÃŠÃ”
 void RecDataFunc(void);
 
 typedef struct
 {
 	u8 RCRC_Start[CRC_STA];
 	u8 RDataCnt_State;
-	u8 RMainMotor_State;
-	u8 RExtdMotor_State;
-	u8 RMainMotor_Spd;
-	u8 RExtdMotor_Spd;
 	u8 RLED_State;
+	u8 RMainMotor_State;
+	u8 RMainMotor_Spd;
+	u8 RExtdMotor_State;
+	u8 RExtdMotor_Spd;
 	u8 RSteer1_Angle;
 	u8 RSteer2_Angle;
 	u8 RCRC_End[CRC_END];
